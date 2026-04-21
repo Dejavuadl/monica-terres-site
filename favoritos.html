@@ -160,42 +160,38 @@
 
 <script>
 const PROPERTIES = {
-  1:  { title:'Casa residencial en Polanco',         price:'$8,500,000',  location:'Polanco, Miguel Hidalgo',          beds:4, baths:3.5, parking:2, area:'320m²', tags:['Casa','Jardín'],    badge:'En venta', badgeClass:'badge-venta', svgId:1 },
-  2:  { title:'Departamento moderno en Roma Norte',  price:'$4,200,000',  location:'Roma Norte, Cuauhtémoc',           beds:2, baths:2,   parking:1, area:'95m²',  tags:['Depto.','Terraza'], badge:'En venta', badgeClass:'badge-venta', svgId:2 },
-  3:  { title:'Casa con alberca en Pedregal',        price:'$15,000,000', location:'Pedregal de San Ángel, Coyoacán',  beds:5, baths:4.5, parking:3, area:'650m²', tags:['Casa','Alberca','Jardín'], badge:'Nuevo', badgeClass:'badge-nuevo', svgId:1 },
-  4:  { title:'Departamento de lujo en Lomas',       price:'$6,800,000',  location:'Lomas de Chapultepec, M. Hidalgo', beds:3, baths:2.5, parking:2, area:'180m²', tags:['Depto.','Gym'],     badge:'En venta', badgeClass:'badge-venta', svgId:2 },
-  5:  { title:'Casa en La Condesa',                  price:'$4,500,000',  location:'La Condesa, Cuauhtémoc',           beds:3, baths:2,   parking:1, area:'220m²', tags:['Casa','Patio'],     badge:'En venta', badgeClass:'badge-venta', svgId:1 },
-  6:  { title:'Departamento en Narvarte Poniente',   price:'$3,500,000',  location:'Narvarte Poniente, Benito Juárez', beds:2, baths:1.5, parking:1, area:'85m²',  tags:['Depto.'],           badge:'En venta', badgeClass:'badge-venta', svgId:2 },
-  7:  { title:'Residencia en Las Lomas',             price:'$22,000,000', location:'Lomas de Reforma, Miguel Hidalgo', beds:6, baths:6,   parking:4, area:'900m²', tags:['Residencia','Alberca','Coto'], badge:'Nuevo', badgeClass:'badge-nuevo', svgId:1 },
-  8:  { title:'Departamento con roof en Santa Fe',   price:'$5,900,000',  location:'Santa Fe, Álvaro Obregón',         beds:3, baths:2,   parking:2, area:'140m²', tags:['Depto.','Roof'],    badge:'En venta', badgeClass:'badge-venta', svgId:2 },
-  9:  { title:'Casa en Coyoacán Centro',             price:'$9,800,000',  location:'Coyoacán Centro, Coyoacán',        beds:4, baths:3,   parking:2, area:'400m²', tags:['Casa','Estudio'],   badge:'En venta', badgeClass:'badge-venta', svgId:1 },
-  10: { title:'Casa en Bosques de las Lomas',        price:'$11,200,000', location:'Bosques de las Lomas, Cuajimalpa', beds:5, baths:4,   parking:3, area:'500m²', tags:['Casa','Bosque'],    badge:'En venta', badgeClass:'badge-venta', svgId:1 },
-  11: { title:'Local comercial en Insurgentes',      price:'$3,200,000',  location:'Insurgentes Sur, Benito Juárez',   beds:0, baths:1,   parking:2, area:'75m²',  tags:['Comercial','Planta baja'], badge:'En venta', badgeClass:'badge-venta', svgId:3 },
-  12: { title:'Casa en Del Valle Norte',             price:'$7,400,000',  location:'Del Valle Norte, Benito Juárez',   beds:3, baths:2.5, parking:2, area:'210m²', tags:['Casa','Remodelada'], badge:'Nuevo', badgeClass:'badge-nuevo', svgId:1 },
-  13: { title:'Depto. en Portales Norte – Antillas', price:'$4,286,909', location:'Portales Norte, Benito Juárez',     beds:2, baths:2,   parking:1, area:'60m²',  tags:['Depto.','Nuevo'],   badge:'En venta', badgeClass:'badge-venta', svgId:2 },
-  14: { title:'Depto. en Portales Sur – Bélgica',    price:'$5,362,751', location:'Portales Sur, Benito Juárez',      beds:2, baths:2,   parking:1, area:'81m²',  tags:['Depto.','Balcón','Roof garden'], badge:'En venta', badgeClass:'badge-venta', svgId:2 },
-  15: { title:'Depto. exterior en Portales Sur – Bélgica', price:'$4,706,313', location:'Portales Sur, Benito Juárez', beds:2, baths:2,  parking:1, area:'77m²',  tags:['Depto.','Balcón','Roof garden'], badge:'En venta', badgeClass:'badge-venta', svgId:2 },
-  16: { title:'Depto. en Portales Norte – Emperadores', price:'$3,694,460', location:'Portales Norte, Benito Juárez', beds:2, baths:2,   parking:1, area:'71m²',  tags:['Depto.','Roof garden'], badge:'Nuevo', badgeClass:'badge-nuevo', svgId:2 }
+  1:  { title:'Departamento en Portales Oriente',                    price:'$3,844,290', location:'Portales Oriente, Benito Juárez',  beds:2, baths:2, parking:1, area:'69m²',  tags:['Depto.','Elevador','Roof garden'],     badge:'Nuevo',    badgeClass:'badge-nuevo', photo:'fotos/emperadores/fachada emperadores.png' },
+  2:  { title:'Departamento con terraza en Portales Norte',          price:'$4,580,700', location:'Portales Norte, Benito Juárez',    beds:2, baths:2, parking:1, area:'85m²',  tags:['Depto.','Terraza'],                    badge:'En venta', badgeClass:'badge-venta', photo:'fotos/antillas/fachada antillas.png' },
+  3:  { title:'Departamento con balcón en Portales Norte',           price:'$4,720,860', location:'Portales Norte, Benito Juárez',    beds:2, baths:2, parking:1, area:'69m²',  tags:['Depto.','Balcón'],                     badge:'En venta', badgeClass:'badge-venta', photo:'fotos/antillas/fachada antillas.png' },
+  4:  { title:'Departamento con roof privado en Portales Norte',     price:'$5,886,444', location:'Portales Norte, Benito Juárez',    beds:2, baths:2, parking:2, area:'136m²', tags:['Depto.','Roof privado'],               badge:'En venta', badgeClass:'badge-venta', photo:'fotos/antillas/fachada antillas.png' },
+  5:  { title:'Departamento en Portales Norte · Antillas 408',       price:'$4,286,909', location:'Portales Norte, Benito Juárez',    beds:2, baths:2, parking:1, area:'60m²',  tags:['Depto.','Nuevo'],                      badge:'En venta', badgeClass:'badge-venta', photo:'fotos/antillas/fachada antillas.png' },
+  6:  { title:'Departamento con balcón y roof garden en Portales Sur', price:'$5,362,751', location:'Portales Sur, Benito Juárez',   beds:2, baths:2, parking:1, area:'81m²',  tags:['Depto.','Balcón','Roof garden'],       badge:'En venta', badgeClass:'badge-venta', photo:'fotos/belgica/fachada belgica.png' },
+  7:  { title:'Departamento exterior con balcón en Portales Sur',    price:'$4,706,313', location:'Portales Sur, Benito Juárez',      beds:2, baths:2, parking:1, area:'77m²',  tags:['Depto.','Balcón','Roof garden'],       badge:'En venta', badgeClass:'badge-venta', photo:'fotos/belgica/fachada belgica.png' },
+  8:  { title:'Departamento en Portales Norte · Emperadores',        price:'$3,694,460', location:'Portales Norte, Benito Juárez',    beds:2, baths:2, parking:1, area:'71m²',  tags:['Depto.','Roof garden'],                badge:'Nuevo',    badgeClass:'badge-nuevo', photo:'fotos/emperadores/fachada emperadores.png' },
+  9:  { title:'Departamento con balcón en Piedad Narvarte',          price:'$4,851,450', location:'Piedad Narvarte, Benito Juárez',   beds:2, baths:2, parking:1, area:'74m²',  tags:['Depto.','Balcón'],                     badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  10: { title:'Departamento 201 con terraza en Piedad Narvarte',     price:'$5,631,500', location:'Piedad Narvarte, Benito Juárez',   beds:2, baths:2, parking:1, area:'79m²',  tags:['Depto.','Terraza'],                    badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  11: { title:'Departamento con terraza privada 36 m² en Piedad Narvarte', price:'$5,858,100', location:'Piedad Narvarte, Benito Juárez', beds:2, baths:2, parking:1, area:'74m²', tags:['Depto.','Terraza privada'], badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  12: { title:'Departamento con terraza privada 41 m² en Piedad Narvarte', price:'$6,010,225', location:'Piedad Narvarte, Benito Juárez', beds:2, baths:2, parking:1, area:'74m²', tags:['Depto.','Terraza privada'], badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  13: { title:'Departamento con amenidades en Narvarte Oriente',     price:'$4,000,000', location:'Narvarte Oriente, Benito Juárez',  beds:2, baths:2, parking:1, area:'67m²',  tags:['Depto.','Alberca','Gimnasio'],         badge:'En venta', badgeClass:'badge-venta', photo:'fotos/the-park/fachada the park.png' },
+  14: { title:'Departamento 1 rec. con roof garden en Narvarte',     price:'$3,660,600', location:'Piedad Narvarte, Benito Juárez',   beds:1, baths:1, parking:1, area:'58m²',  tags:['Depto.','Roof garden'],                badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  15: { title:'Departamento 1 rec. con roof privado en Narvarte',    price:'$4,462,725', location:'Piedad Narvarte, Benito Juárez',   beds:1, baths:1, parking:1, area:'58m²',  tags:['Depto.','Roof privado'],               badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  16: { title:'Departamento 2 rec. con roof garden en Narvarte',     price:'$4,712,000', location:'Piedad Narvarte, Benito Juárez',   beds:2, baths:2, parking:1, area:'74m²',  tags:['Depto.','Roof garden'],                badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  17: { title:'Departamento 2 rec. con roof garden en Narvarte',     price:'$4,744,000', location:'Piedad Narvarte, Benito Juárez',   beds:2, baths:2, parking:1, area:'74m²',  tags:['Depto.','Roof garden'],                badge:'En venta', badgeClass:'badge-venta', photo:'fotos/obrero-mundial/fachada obrero.jpeg' },
+  18: { title:'Departamento 3 rec. con balcón en Del Valle Sur',     price:'$6,950,000', location:'Del Valle Sur, Benito Juárez',     beds:3, baths:2, parking:2, area:'114m²', tags:['Depto.','Balcón'],                     badge:'Nuevo',    badgeClass:'badge-nuevo', photo:'fotos/del-valle/fachada del valle plus.png' },
 };
-
-const SVG_HOUSE = `<svg width="60" height="60" viewBox="0 0 60 60" fill="white"><path d="M30 5L55 25V55H5V25Z" stroke="white" stroke-width="2" fill="none"/><rect x="22" y="37" width="16" height="18" stroke="white" stroke-width="1.5" fill="none"/><rect x="10" y="33" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/><rect x="40" y="33" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/></svg>`;
-const SVG_DEPT  = `<svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="5" y="15" width="50" height="40" stroke="white" stroke-width="2" fill="none"/><rect x="5" y="5" width="50" height="10" stroke="white" stroke-width="1.5" fill="none"/><rect x="20" y="35" width="12" height="20" stroke="white" stroke-width="1.5" fill="none"/><rect x="10" y="22" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/><rect x="40" y="22" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/></svg>`;
-const SVG_COMM  = `<svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="10" y="15" width="40" height="40" stroke="white" stroke-width="2" fill="none"/><line x1="10" y1="30" x2="50" y2="30" stroke="white" stroke-width="1"/><line x1="30" y1="15" x2="30" y2="55" stroke="white" stroke-width="1"/></svg>`;
-const SVGS = [null, SVG_HOUSE, SVG_DEPT, SVG_COMM];
 
 const PIN = `<svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg>`;
 
+function encPath(p){ return p.split('/').map(s=>encodeURIComponent(s)).join('/'); }
+
 function buildCard(id, p) {
   const tags = p.tags.map(t => `<span class="card-tag">${t}</span>`).join('');
-  const bedsSpec = p.beds > 0
-    ? `<div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">${p.beds}</span><span class="spec-lbl">Rec.</span></div>`
-    : `<div class="spec"><span class="spec-icon">🏢</span><span class="spec-val">1</span><span class="spec-lbl">Local</span></div>`;
   return `
-    <div class="prop-card">
+    <div class="prop-card" onclick="window.location='propiedad.html?id=${id}'" style="cursor:pointer;">
       <div class="card-img">
-        <div class="card-img-placeholder">${SVGS[p.svgId]}</div>
+        <img src="${encPath(p.photo)}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
         <span class="card-badge ${p.badgeClass}">${p.badge}</span>
-        <button class="card-fav" onclick="removeFav(this,${id})">♥</button>
+        <button class="card-fav" onclick="event.stopPropagation();removeFav(this,${id})">♥</button>
       </div>
       <div class="card-body">
         <div class="card-price">${p.price}</div>
@@ -204,7 +200,7 @@ function buildCard(id, p) {
         <div class="card-tags">${tags}</div>
         <div class="card-divider"></div>
         <div class="card-specs">
-          ${bedsSpec}
+          <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">${p.beds}</span><span class="spec-lbl">Rec.</span></div>
           <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">${p.baths}</span><span class="spec-lbl">Baños</span></div>
           <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">${p.parking}</span><span class="spec-lbl">Est.</span></div>
           <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">${p.area}</span><span class="spec-lbl">Sup.</span></div>
