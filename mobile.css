@@ -1,230 +1,238 @@
 /* ====================================================
    MÓNICA TERRÉS — RESPONSIVE / MOBILE STYLES
-   Breakpoints: 900px (tablet), 600px (phone)
    ==================================================== */
 
-/* ── NAV HAMBURGER ── */
+/* ── HAMBURGER BUTTON (hidden on desktop) ── */
 .nav-toggle {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  z-index: 201;
+  flex-shrink: 0;
 }
 .nav-toggle span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: #fff;
   border-radius: 2px;
-  transition: all 0.3s;
+  transition: transform 0.25s, opacity 0.25s;
 }
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* ── TABLET & MOBILE (≤ 900px) ── */
 @media (max-width: 900px) {
+
   /* NAV */
   nav {
     padding: 0 20px !important;
-    height: 70px !important;
+    height: 68px !important;
     overflow: visible !important;
+    position: sticky !important;
+    z-index: 999 !important;
   }
-  .logo-svg { height: 90px !important; }
+  .logo-svg { height: 84px !important; }
   .nav-toggle { display: flex !important; }
+
+  /* Dropdown menu */
   .nav-links {
     display: none !important;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: #2B292A;
     flex-direction: column !important;
     gap: 0 !important;
-    padding: 8px 0 16px;
-    border-bottom: 1px solid #515051;
-    z-index: 200;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    position: fixed !important;
+    top: 68px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #2B292A !important;
+    padding: 8px 0 20px !important;
+    border-bottom: 2px solid #515051 !important;
+    z-index: 998 !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4) !important;
+    list-style: none !important;
   }
   .nav-links.open { display: flex !important; }
   .nav-links li { width: 100%; }
   .nav-links a {
-    display: block;
-    padding: 14px 24px !important;
+    display: block !important;
+    padding: 13px 24px !important;
     font-size: 13px !important;
-    letter-spacing: 0.1em !important;
+    letter-spacing: 0.08em !important;
+    color: #B5B5B5 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
   }
+  .nav-links a:hover, .nav-links a.active { color: #fff !important; background: rgba(255,255,255,0.04) !important; }
+  .nav-links li:last-child a { border-bottom: none !important; }
   .nav-cta {
-    margin: 8px 24px 0 !important;
+    display: block !important;
+    margin: 12px 24px 0 !important;
     padding: 12px 20px !important;
-    text-align: center;
+    text-align: center !important;
+    background: #fff !important;
+    color: #2B292A !important;
     border-radius: 4px !important;
+    border-bottom: none !important;
   }
+  .nav-cta:hover { background: #E6E6F2 !important; }
 
   /* HERO — HOME */
-  .hero { padding: 48px 20px 40px !important; }
-  .hero-inner {
-    grid-template-columns: 1fr !important;
-    gap: 36px !important;
-  }
-  .hero h1 { font-size: 34px !important; }
-  .hero-desc { font-size: 14px !important; }
-  .hero-ctas { flex-direction: column !important; }
+  .hero { padding: 40px 20px 36px !important; }
+  .hero-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .hero h1 { font-size: 32px !important; line-height: 1.1 !important; }
+  .hero-desc { font-size: 13px !important; margin-bottom: 28px !important; }
+  .hero-ctas { flex-direction: column !important; gap: 10px !important; }
   .btn-hero-primary, .btn-hero-secondary,
-  .btn-primary, .btn-secondary {
-    text-align: center;
-    justify-content: center;
-  }
-  .hero-stats { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-  .hero-stat-card { padding: 20px 16px !important; }
-  .hero-stat-num { font-size: 28px !important; }
+  .btn-primary, .btn-secondary { text-align: center !important; justify-content: center !important; padding: 15px 24px !important; }
+  .hero-stats { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .hero-stat-card { padding: 18px 14px !important; }
+  .hero-stat-num { font-size: 26px !important; }
+  .hero-stat-lbl { font-size: 10px !important; }
 
   /* HERO — INNER PAGES */
-  .hero h1 { font-size: 30px !important; max-width: 100% !important; }
-  .page-header { padding: 32px 20px !important; }
-  .page-header h1 { font-size: 26px !important; }
+  .page-header { padding: 28px 20px !important; }
+  .page-header h1 { font-size: 24px !important; }
+  .hero h1 { max-width: 100% !important; }
 
   /* SECTIONS */
-  .section { padding: 48px 20px !important; }
-  .section-header {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
-  }
-  .section-title { font-size: 24px !important; }
+  .section { padding: 40px 20px !important; }
+  .section-header { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  .section-title { font-size: 22px !important; }
 
-  /* FEATURED GRID */
+  /* FEATURED / PROP GRID */
   .featured-grid { grid-template-columns: 1fr !important; }
+  .prop-grid { grid-template-columns: 1fr !important; }
 
   /* WHY GRID */
-  .why-inner { padding: 48px 20px !important; }
-  .why-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+  .why-inner { padding: 40px 20px !important; }
+  .why-grid { grid-template-columns: 1fr 1fr !important; gap: 20px !important; margin-top: 28px !important; }
 
   /* SELL CTA */
-  .sell-cta { padding: 56px 20px !important; }
-  .sell-cta-inner { grid-template-columns: 1fr !important; gap: 36px !important; }
-  .sell-cta h2 { font-size: 28px !important; }
+  .sell-cta { padding: 48px 20px !important; }
+  .sell-cta-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .sell-cta h2 { font-size: 26px !important; }
 
   /* CONTACT STRIP */
-  .contact-strip { padding: 32px 20px !important; }
-  .contact-strip-inner {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 20px !important;
-  }
-  .contact-strip-btns { flex-direction: column !important; width: 100% !important; }
-  .strip-btn-white, .strip-btn-ghost {
-    text-align: center !important;
-    padding: 14px 20px !important;
-  }
+  .contact-strip { padding: 28px 20px !important; }
+  .contact-strip-inner { flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
+  .contact-strip h3 { font-size: 17px !important; }
+  .contact-strip-btns { flex-direction: row !important; width: 100% !important; }
+  .strip-btn-white, .strip-btn-ghost { flex: 1 !important; text-align: center !important; padding: 12px 12px !important; font-size: 11px !important; }
 
   /* ZONES BAND */
   .zones-scroll { padding: 0 20px !important; }
 
   /* FOOTER */
-  footer { padding: 40px 20px 24px !important; }
-  .footer-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 32px !important;
-  }
-  .footer-bottom {
-    flex-direction: column !important;
-    gap: 16px !important;
-    text-align: center;
-  }
+  footer { padding: 36px 20px 20px !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; margin-bottom: 32px !important; }
+  .footer-bottom { flex-direction: column !important; gap: 14px !important; text-align: center !important; }
 
-  /* COMPRA / VENTA — SEARCH & FILTERS */
-  .search-bar {
-    flex-direction: column !important;
-    padding: 12px !important;
-  }
-  .search-field {
-    border-right: none !important;
-    border-bottom: 1px solid #E8E8E8 !important;
-    padding: 10px 12px !important;
-  }
+  /* SEARCH BAR */
+  .search-bar { flex-direction: column !important; padding: 10px !important; }
+  .search-field { border-right: none !important; border-bottom: 1px solid #E8E8E8 !important; padding: 9px 12px !important; }
   .search-field:last-of-type { border-bottom: none !important; }
   .search-btn { width: 100% !important; justify-content: center !important; margin-top: 4px !important; }
-  .stats-bar, .stats-strip, .search-wrap { padding: 0 20px !important; }
-  .stats-inner {
-    flex-wrap: wrap !important;
-    gap: 0 !important;
-    padding: 8px 0 !important;
-  }
-  .stat-item {
-    border-right: none !important;
-    padding: 10px 16px 10px 0 !important;
-    margin-right: 0 !important;
-    flex: 0 0 50% !important;
-  }
+  .search-wrap, .search-wrap-inner { padding-left: 20px !important; padding-right: 20px !important; }
 
-  /* COMPRA — LAYOUT */
-  .main { padding: 24px 20px !important; }
+  /* STATS BAR */
+  .stats-bar, .stats-strip { padding: 0 20px !important; }
+  .stats-inner { flex-wrap: wrap !important; }
+  .stat-item { border-right: none !important; padding: 10px 0 10px 0 !important; margin-right: 0 !important; flex: 0 0 50% !important; }
+
+  /* COMPRA / VENTA — LAYOUT */
+  .main { padding: 20px !important; }
   .content-layout { grid-template-columns: 1fr !important; gap: 0 !important; }
-  .filters {
-    position: static !important;
-    margin-bottom: 24px !important;
-  }
-  .content-header {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
-  }
+  .filters { position: static !important; margin-bottom: 20px !important; }
+  .content-header { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
   .view-controls { width: 100% !important; justify-content: space-between !important; }
 
-  /* PROP CARD GRID */
-  .prop-grid { grid-template-columns: 1fr !important; }
-
   /* NOSOTROS */
-  .content { padding: 40px 20px !important; }
-  .about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .mission-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .content { padding: 36px 20px !important; }
+  .about-grid { grid-template-columns: 1fr !important; gap: 28px !important; margin-bottom: 40px !important; }
+  .mission-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .focus-grid { grid-template-columns: 1fr 1fr !important; }
 
   /* CONTACTO */
-  .intent-section { padding: 24px 20px !important; }
+  .intent-section { padding: 20px !important; }
   .intent-buttons { flex-direction: column !important; }
   .intent-btn { width: 100% !important; }
-  .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .contact-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
   .form-row { grid-template-columns: 1fr !important; }
 
-  /* PROPIEDAD */
-  .gallery-inner { padding: 0 12px !important; }
-  .prop-layout {
-    grid-template-columns: 1fr !important;
-    padding: 20px 20px 60px !important;
-    gap: 32px !important;
-  }
-  .prop-price { font-size: 30px !important; }
-  .prop-title { font-size: 18px !important; }
-  .breadcrumb-wrap { padding: 16px 20px 0 !important; }
-  .prop-sidebar { position: static !important; }
-
-  /* CHATBOT — avoid overlap with WhatsApp btn */
-  #mtbr-chat-btn { bottom: 90px !important; right: 20px !important; }
-  #mtbr-chat-box { bottom: 160px !important; right: 20px !important; width: calc(100vw - 40px) !important; }
-  .wa-btn { bottom: 28px !important; right: 20px !important; }
-}
-
-@media (max-width: 600px) {
-  /* Extra small phones */
-  .hero h1 { font-size: 28px !important; }
-  .page-header h1 { font-size: 22px !important; }
-  .sell-cta h2 { font-size: 24px !important; }
-  .section-title { font-size: 22px !important; }
-  .why-grid { grid-template-columns: 1fr !important; }
-  .footer-grid { grid-template-columns: 1fr !important; }
-  .hero-stats { grid-template-columns: 1fr 1fr !important; }
-  .prop-price { font-size: 26px !important; }
-
-  /* Gallery on propiedad — show single column */
+  /* ── PROPIEDAD — GALLERY ── */
+  .gallery-section { padding: 0 !important; }
+  .gallery-inner { padding: 0 !important; }
   .gallery-grid {
     grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
-    height: auto !important;
+    grid-template-rows: 260px !important;
+    height: 260px !important;
+    border-radius: 0 !important;
+    gap: 0 !important;
   }
-  .g-hero { grid-row: auto !important; }
-  .g-slot { height: 220px !important; }
+  .g-slot { display: none !important; }
+  .g-hero { display: block !important; grid-row: 1 !important; height: 260px !important; }
+  .gallery-label-bar { padding: 10px 16px !important; }
+
+  /* ── PROPIEDAD — BREADCRUMB ── */
+  .breadcrumb-wrap { padding: 14px 16px 0 !important; }
+  .breadcrumb .bc-cur { max-width: 200px !important; }
+
+  /* ── PROPIEDAD — LAYOUT ── */
+  .prop-layout {
+    grid-template-columns: 1fr !important;
+    padding: 16px 16px 60px !important;
+    gap: 28px !important;
+  }
+  .prop-price { font-size: 28px !important; }
+  .prop-title { font-size: 17px !important; }
+
+  /* ── PROPIEDAD — SPECS BAR ── */
+  .specs-bar {
+    grid-template-columns: repeat(3, 1fr) !important;
+    margin: 20px 0 !important;
+  }
+  .sc-val { font-size: 15px !important; }
+  .sc-icon { font-size: 18px !important; }
+
+  /* ── PROPIEDAD — FEATURES & AMENITIES ── */
+  .features-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .amen-wrap { gap: 6px !important; }
+  .amen-tag { padding: 8px 12px !important; font-size: 11px !important; }
+
+  /* ── PROPIEDAD — POIs ── */
+  .pois-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+
+  /* ── PROPIEDAD — CONTACT CARD ── */
+  .contact-card { position: static !important; }
+  .cc-head { padding: 20px !important; }
+  .cc-price { font-size: 22px !important; }
+  .cc-body { padding: 18px !important; }
+  .cc-btns { flex-direction: row !important; flex-wrap: wrap !important; }
+  .cc-btn { flex: 1 1 calc(50% - 5px) !important; font-size: 12px !important; padding: 13px 10px !important; }
+  .cc-btn-wa, .cc-btn-phone { flex: 1 1 calc(50% - 5px) !important; }
+  .cc-btn-email, .cc-btn-pdf { flex: 1 1 100% !important; }
+
+  /* ── CHATBOT position ── */
+  #mtbr-chat-btn { bottom: 24px !important; right: 20px !important; }
+  #mtbr-chat-box { bottom: 94px !important; right: 20px !important; width: calc(100vw - 40px) !important; }
+}
+
+/* ── SMALL PHONES (≤ 480px) ── */
+@media (max-width: 480px) {
+  .hero h1 { font-size: 26px !important; }
+  .page-header h1 { font-size: 20px !important; }
+  .sell-cta h2 { font-size: 22px !important; }
+  .section-title { font-size: 20px !important; }
+  .why-grid { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .prop-price { font-size: 24px !important; }
+  .specs-bar { grid-template-columns: repeat(3, 1fr) !important; }
+  .sc { padding: 14px 6px !important; }
+  .cc-btn { flex: 1 1 100% !important; }
+  .contact-strip-btns { flex-direction: column !important; }
+  .strip-btn-white, .strip-btn-ghost { flex: none !important; width: 100% !important; }
 }
