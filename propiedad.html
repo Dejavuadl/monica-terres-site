@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Propiedad — Mónica Terrés Bienes Raíces</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #2B292A; --dark2: #515051; --mid: #403E3F;
+    --grey: #737273; --softgrey: #B5B5B5; --greyblue: #E6E6F2;
+    --white: #FFFFFF;
+    --radius: 4px; --radius-md: 8px; --radius-lg: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: #F4F4F4; color: var(--dark); }
+
+  /* ── NAV ── */
+  nav { background: var(--dark); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height:100px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--mid); }
+  .logo-area { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .logo-svg{height:135px;width:auto;object-fit:contain;}
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-text .brand-name { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; text-transform: uppercase; }
+  .logo-text .brand-sub { font-size: 9px; font-weight: 400; color: var(--softgrey); letter-spacing: 0.25em; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--softgrey); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--white); color: var(--dark) !important; padding: 8px 20px; border-radius: var(--radius); font-weight: 700 !important; }
+  .nav-cta:hover { background: var(--greyblue) !important; color: var(--dark) !important; }
+
+  /* ── GALLERY ── */
+  .gallery-section { background: #1B1A1A; padding: 20px 0 0; }
+  .gallery-inner { max-width: 1248px; margin: 0 auto; padding: 0 48px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr 1fr;
+    grid-template-rows: 234px 234px;
+    gap: 5px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+  }
+  .g-slot { position: relative; overflow: hidden; background: #222020; }
+  .g-slot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; cursor: zoom-in; }
+  .g-slot img:hover { transform: scale(1.04); }
+  .g-hero { grid-row: 1 / 3; cursor: pointer; }
+  /* hero placeholder */
+  .g-ph-hero {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #282425 0%, #1C1A1B 60%, #222020 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+    padding: 32px; text-align: center;
+  }
+  .g-ph-hero-logo { opacity: 0.12; }
+  .g-ph-hero-title { font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.55); line-height: 1.35; max-width: 280px; }
+  .g-ph-hero-price { font-size: 28px; font-weight: 800; color: rgba(255,255,255,0.35); letter-spacing: -0.02em; }
+  .g-ph-hero-label { font-size: 9px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-top: 8px; }
+  /* small placeholders */
+  .g-ph-small {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #252223 0%, #1E1C1D 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  }
+  .g-ph-small svg { opacity: 0.14; }
+  .g-ph-small-lbl { font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.18); }
+  /* photos button */
+  .gallery-photos-btn {
+    position: absolute; bottom: 18px; right: 18px;
+    background: rgba(255,255,255,0.93); border: none; border-radius: var(--radius);
+    padding: 9px 16px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    color: var(--dark); cursor: pointer; display: flex; align-items: center; gap: 7px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.35); transition: background 0.2s;
+  }
+  .gallery-photos-btn:hover { background: #fff; }
+  .gallery-label-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0 20px;
+  }
+  .gallery-label-bar span { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb-wrap { max-width: 1248px; margin: 0 auto; padding: 22px 48px 0; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; }
+  .breadcrumb a { font-size: 12px; font-weight: 500; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--dark); }
+  .breadcrumb .sep { font-size: 12px; color: var(--softgrey); }
+  .breadcrumb .bc-cur { font-size: 12px; font-weight: 600; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 340px; }
+
+  /* ── MAIN LAYOUT ── */
+  .prop-layout { max-width: 1248px; margin: 0 auto; padding: 26px 48px 100px; display: grid; grid-template-columns: 1fr 356px; gap: 48px; align-items: start; }
+
+  /* ── PROP HEADER ── */
+  .prop-header { margin-bottom: 28px; }
+  .prop-price { font-size: 42px; font-weight: 800; color: var(--dark); letter-spacing: -0.03em; line-height: 1; margin-bottom: 10px; }
+  .prop-title { font-size: 22px; font-weight: 700; color: var(--dark); line-height: 1.35; margin-bottom: 8px; }
+  .prop-loc { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+  .prop-loc span { font-size: 13px; font-weight: 400; color: var(--grey); }
+  .prop-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .pbadge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; }
+  .pbadge-tag { background: var(--greyblue); color: var(--dark2); }
+  .pbadge-green { background: #EDF7F0; color: #267A3A; border: 1px solid #B8DFC2; }
+  .pbadge-grey { background: #F5F5F5; color: var(--grey); border: 1px solid #E8E8E8; }
+
+  /* ── SPECS BAR ── */
+  .specs-bar {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border: 1px solid #E8E8E8; border-radius: var(--radius-md);
+    overflow: hidden; background: #E8E8E8; gap: 1px;
+    margin: 28px 0;
+  }
+  .sc { background: var(--white); padding: 18px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sc-icon { font-size: 22px; line-height: 1; }
+  .sc-val { font-size: 18px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; }
+  .sc-lbl { font-size: 9px; font-weight: 700; color: var(--softgrey); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
+
+  /* ── SECTION ── */
+  .prop-section { margin-bottom: 44px; }
+  .sec-heading {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--dark); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .sec-heading::after { content: ''; flex: 1; height: 1px; background: #E8E8E8; }
+  .desc-body { font-size: 14px; font-weight: 400; color: var(--dark2); line-height: 1.9; }
+
+  /* features */
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 24px; }
+  .feat { display: flex; align-items: center; gap: 11px; font-size: 13px; font-weight: 500; color: var(--dark2); }
+  .feat-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .feat-dot svg { display: block; }
+
+  /* amenities */
+  .amen-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .amen-tag {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1px solid #E8E8E8; border-radius: var(--radius-md);
+    padding: 9px 16px; font-size: 12px; font-weight: 600; color: var(--dark2);
+    transition: border-color 0.15s;
+  }
+  .amen-tag:hover { border-color: #C8C8C8; }
+  .amen-tag .at-icon { font-size: 16px; }
+
+  /* POIs */
+  .pois-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .poi-card { background: var(--white); border: 1px solid #E8E8E8; border-radius: var(--radius-md); padding: 16px 18px; }
+  .poi-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .poi-head-icon { font-size: 18px; }
+  .poi-head-title { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dark2); }
+  .poi-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .poi-list li { font-size: 12px; font-weight: 400; color: var(--grey); padding-left: 12px; position: relative; }
+  .poi-list li::before { content: '·'; position: absolute; left: 2px; color: var(--softgrey); }
+
+  /* address box */
+  .address-box { background: var(--white); border: 1px solid #E8E8E8; border-radius: var(--radius-md); padding: 18px 20px; display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .address-icon { width: 38px; height: 38px; border-radius: 50%; background: var(--dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .address-text .addr-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--softgrey); margin-bottom: 4px; }
+  .address-text .addr-val { font-size: 14px; font-weight: 600; color: var(--dark); }
+
+  /* ── CONTACT CARD (right col) ── */
+  .contact-card { background: var(--white); border: 1px solid #E8E8E8; border-radius: var(--radius-lg); overflow: hidden; position: sticky; top: 88px; }
+  .cc-head { background: var(--dark); padding: 26px 24px; }
+  .cc-price { font-size: 28px; font-weight: 800; color: var(--white); letter-spacing: -0.025em; margin-bottom: 4px; }
+  .cc-label { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--softgrey); }
+  .cc-body { padding: 24px; }
+  .agent-row { display: flex; align-items: center; gap: 14px; padding-bottom: 22px; border-bottom: 1px solid #F0F0F0; margin-bottom: 22px; }
+  .agent-ava { width: 56px; height: 56px; border-radius: 50%; background: var(--mid); border: 2px solid #E8E8E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .agent-name { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .agent-role { font-size: 11px; font-weight: 500; color: var(--grey); margin-bottom: 2px; }
+  .agent-co { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--softgrey); }
+  .cc-btns { display: flex; flex-direction: column; gap: 10px; }
+  .cc-btn {
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    padding: 15px 20px; border-radius: var(--radius-md); border: none;
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    cursor: pointer; text-decoration: none; transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .cc-btn-wa { background: #25D366; color: #fff; }
+  .cc-btn-wa:hover { background: #1ebe5a; }
+  .cc-btn-phone { background: var(--dark); color: #fff; }
+  .cc-btn-phone:hover { background: var(--mid); }
+  .cc-btn-email { background: transparent; color: var(--dark); border: 1.5px solid #D8D8D8; }
+  .cc-btn-email:hover { border-color: var(--dark); background: #FAFAFA; }
+  .cc-btn-pdf { background: transparent; color: var(--dark2); border: 1.5px solid #D8D8D8; }
+  .cc-btn-pdf:hover { border-color: var(--dark); color: var(--dark); background: #FAFAFA; }
+  .cc-divider { height: 1px; background: #F0F0F0; margin: 20px 0; }
+  .cc-detail-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .cc-detail-lbl { font-size: 11px; font-weight: 500; color: var(--grey); }
+  .cc-detail-val { font-size: 12px; font-weight: 700; color: var(--dark); }
+  .cc-note { text-align: center; font-size: 11px; color: var(--softgrey); margin-top: 16px; line-height: 1.6; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 500; flex-direction: column; align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lb-img { max-width: 90vw; max-height: 80vh; border-radius: var(--radius-md); object-fit: contain; }
+  .lb-controls { display: flex; align-items: center; gap: 20px; margin-top: 20px; }
+  .lb-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); color: #fff; font-family: 'Montserrat',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 20px; cursor: pointer; transition: background 0.2s; }
+  .lb-btn:hover { background: rgba(255,255,255,0.25); }
+  .lb-close { position: absolute; top: 24px; right: 28px; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 28px; cursor: pointer; line-height: 1; transition: color 0.2s; }
+  .lb-close:hover { color: #fff; }
+  .lb-counter { color: rgba(255,255,255,0.4); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; }
+
+  /* ── WA FIXED ── */
+  .wa-btn { position: fixed; bottom: 28px; right: 28px; width: 54px; height: 54px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); cursor: pointer; z-index: 200; transition: transform 0.2s; text-decoration: none; }
+  .wa-btn:hover { transform: scale(1.08); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--dark); padding: 56px 48px 32px; }
+  .footer-inner { max-width: 1248px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .footer-brand .brand-name { font-size: 16px; font-weight: 800; color: var(--white); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .footer-brand .brand-sub { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; }
+  .footer-brand p { font-size: 12px; color: var(--grey); line-height: 1.7; max-width: 260px; }
+  .footer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { font-size: 12px; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom p { font-size: 11px; color: var(--grey); }
+  .social-links { display: flex; gap: 12px; }
+  .social-btn { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--grey); font-size: 13px; text-decoration: none; transition: all 0.2s; }
+  .social-btn:hover { border-color: var(--white); color: var(--white); }
+
+  /* ── NOT FOUND / LOADING ── */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-state { text-align: center; padding: 100px 24px; }
+  .loading-spinner { width: 40px; height: 40px; border: 3px solid #2B292A; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+  .not-found { max-width: 540px; margin: 80px auto; text-align: center; padding: 0 24px; }
+  .not-found h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+  .not-found p { font-size: 13px; color: var(--grey); margin-bottom: 28px; line-height: 1.7; }
+  .not-found a { display: inline-block; background: var(--dark); color: #fff; padding: 14px 32px; border-radius: var(--radius-md); font-weight: 700; text-decoration: none; font-size: 13px; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo-area" href="monicaterresweb.html">
+    <img class="logo-svg" src="logo vertical MTBR.png" alt="Mónica Terrés Bienes Raíces">
+  </a>
+  <ul class="nav-links">
+    <li><a href="monicaterresweb.html">Inicio</a></li>
+    <li><a href="compra.html">Compra</a></li>
+    <li><a href="vende.html">Vende</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="tel:+525543687983" class="nav-cta">Llámanos</a></li>
+  </ul>
+</nav>
+
+<div id="app">
+  <div class="loading-state">
+    <div class="loading-spinner"></div>
+    <p style="font-size:13px;color:#737273">Cargando propiedad…</p>
+  </div>
+</div>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <div class="lb-controls">
+    <button class="lb-btn" onclick="lbPrev()">‹ Anterior</button>
+    <span class="lb-counter" id="lbCounter"></span>
+    <button class="lb-btn" onclick="lbNext()">Siguiente ›</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Mónica Terrés</div>
+        <div class="brand-sub">— Bienes Raíces —</div>
+        <p>Especialistas en compra y venta de propiedades residenciales y comerciales en Ciudad de México.</p>
+      </div>
+      <div class="footer-col"><h4>Páginas</h4><ul><li><a href="monicaterresweb.html">Inicio</a></li><li><a href="compra.html">Compra</a></li><li><a href="vende.html">Vende</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="footer-col"><h4>Zonas</h4><ul><li><a href="compra.html">Portales Norte</a></li><li><a href="compra.html">Portales Sur</a></li><li><a href="compra.html">Piedad Narvarte</a></li><li><a href="compra.html">Narvarte Oriente</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+525543687983">+52 55 4368 7983</a></li><li><a href="mailto:monicaterresbr@gmail.com">monicaterresbr@gmail.com</a></li><li><a href="contacto.html">Formulario de contacto</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Mónica Terrés Bienes Raíces · Ciudad de México · Todos los derechos reservados</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1FixHdbSAR/" class="social-btn" target="_blank" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/monicaterres_br" class="social-btn" target="_blank" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://wa.me/525543687983" class="social-btn" target="_blank" title="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/525543687983" class="wa-btn" title="WhatsApp" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+/* ═══════════════════════════════════════
+   DATOS DE LAS PROPIEDADES
+   Para agregar fotos: coloca las rutas en el array "photos"
+   Ejemplo: photos: ['fotos/prop1_a.jpg', 'fotos/prop1_b.jpg', ...]
+   El primer elemento es la foto principal (hero).
+   ═══════════════════════════════════════ */
+
+const POIS_NARVARTE = [
+  { icon: '🏥', title: 'Hospitales', items: ['Hospital Ángeles México', 'Centro Médico Nacional Siglo XXI'] },
+  { icon: '🌳', title: 'Parques', items: ['Parque Delta', 'Parque de los Venados'] },
+  { icon: '🛍️', title: 'Plazas comerciales', items: ['Parque Delta', 'Plaza Universidad'] },
+  { icon: '🚇', title: 'Transporte público', items: ['Metro Etiopía', 'Metro Centro Médico'] },
+  { icon: '🛣️', title: 'Vialidades principales', items: ['Obrero Mundial', 'Av. Cuauhtémoc', 'Eje Central'] }
+];
+
+const POIS_PORTALES = [
+  { icon: '🏥', title: 'Hospitales', items: ['Hospital General de Zona No. 1', 'Centro Médico Nacional Siglo XXI'] },
+  { icon: '🌳', title: 'Parques', items: ['Parque de los Venados', 'Parque Masayoshi Ohira'] },
+  { icon: '🛍️', title: 'Plazas comerciales', items: ['Portal Churubusco', 'Plaza Universidad'] },
+  { icon: '🚇', title: 'Transporte público', items: ['Metro Portales', 'Metro Ermita'] },
+  { icon: '🛣️', title: 'Vialidades principales', items: ['Calzada de Tlalpan', 'Eje Central', 'Municipio Libre'] }
+];
+
+const POIS_PORTALES_BELGICA = [
+  { icon: '🏥', title: 'Hospitales', items: ['Hospital General de Xoco — 10 min', 'Hospital San Ángel Inn Universidad — 13 min'] },
+  { icon: '🌳', title: 'Parques', items: ['Parque de los Venados — 7 min'] },
+  { icon: '🛍️', title: 'Plazas comerciales', items: ['Plaza Universidad — 9 min', 'Portal Churubusco — 12 min'] },
+  { icon: '🎓', title: 'Escuelas', items: ['Universidad Insurgentes — 8 min'] },
+  { icon: '🚇', title: 'Transporte público', items: ['Metro Portales — 6 min', 'Metro Ermita — 8 min'] },
+  { icon: '🛣️', title: 'Vialidades principales', items: ['Calzada de Tlalpan', 'Río Churubusco', 'Avenida División del Norte'] }
+];
+
+const POIS_DEL_VALLE = [
+  { icon: '🏥', title: 'Hospitales', items: ['Hospital San Ángel Inn Universidad — 8 min', 'Hospital Ángeles México — 12 min'] },
+  { icon: '🌳', title: 'Parques', items: ['Parque Hundido — 6 min', 'Parque de los Venados — 8 min'] },
+  { icon: '🛍️', title: 'Plazas comerciales', items: ['Plaza Universidad — 7 min', 'Plaza Coyoacán — 12 min'] },
+  { icon: '🎓', title: 'Escuelas', items: ['Universidad Panamericana — 7 min'] },
+  { icon: '🚇', title: 'Transporte público', items: ['Metro División del Norte — 6 min', 'Metro Zapata — 8 min'] },
+  { icon: '🛣️', title: 'Vialidades principales', items: ['Avenida Universidad', 'Avenida División del Norte', 'Avenida Insurgentes Sur'] }
+];
+
+const DESC_PORTALES = 'Moderno departamento en la alcaldía Benito Juárez, una zona con gran proyección de plusvalía en la Ciudad de México. Acceso inmediato a transporte público, plazas comerciales, parques y servicios. Construcción nueva con excelentes acabados, ideal tanto para primera vivienda como para inversión con alta demanda de renta.';
+
+const DESC_NARVARTE = 'Vive en un agradable desarrollo ubicado en la colonia Narvarte Poniente, en la alcaldía Benito Juárez. Una zona con excelente conectividad, servicios cercanos y gran calidad de vida dentro de la Ciudad de México. Este departamento es ideal para quienes buscan funcionalidad, confort y una ubicación privilegiada tanto para vivir como para invertir.';
+
+const CHECK = `<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+const PHOTOS_ANTILLAS = ["fotos/antillas/1.png","fotos/antillas/2.png","fotos/antillas/3.png","fotos/antillas/4.png","fotos/antillas/5.png","fotos/antillas/Apartamento moderno sin amoblar__endoftext__.png","fotos/antillas/Apartamento vacío con vista al comedor.png","fotos/antillas/Baño en construcción con detalles terminados.png","fotos/antillas/Baño sin terminar con azulejos modernos.png","fotos/antillas/Construcción en progreso con materiales expuestos.png","fotos/antillas/Cuarto de servicio en construcción.png","fotos/antillas/Escalera sin terminar en luz natural.png","fotos/antillas/Espacio en construcción con detalles industriales.png","fotos/antillas/Espacio en construcción con herramientas.png","fotos/antillas/Espacio interior en construcción.png","fotos/antillas/Espacio minimalista con cocina moderna.png","fotos/antillas/Espacio vacío y minimalista de vivienda.png","fotos/antillas/Esquina de sala minimalista con puerta.png","fotos/antillas/Habitación luminosa con armario de madera.png","fotos/antillas/Habitación minimalista con armario de madera.png","fotos/antillas/Habitación moderna con armario de madera.png","fotos/antillas/Habitación moderna con armario integrado.png","fotos/antillas/Habitación moderna y luminosa vacía.png","fotos/antillas/Habitación vacía iluminada por luz natural.png","fotos/antillas/Habitación vacía y luminosa.png","fotos/antillas/Interior moderno con armario incorporado.png","fotos/antillas/Luz natural en habitación vacía.png","fotos/antillas/Pasillo en construcción con luz natural.png","fotos/antillas/Pasillo moderno con acceso a balcón.png","fotos/antillas/Pasillo moderno iluminado por luz natural.png","fotos/antillas/Pasillo moderno y limpio.png","fotos/antillas/Sala de servicio moderna y funcional.png","fotos/antillas/Sala luminosa con ventana amplia.png","fotos/antillas/Sala luminosa con vista al balcón.png","fotos/antillas/Sala luminosa y vacía.png","fotos/antillas/Sala vacía con luz natural.png","fotos/antillas/Sala vacía con vista tropical.png","fotos/antillas/Sótano en construcción con herramientas.png","fotos/antillas/Terraza con vista a la iglesia.png","fotos/antillas/Terraza con vista urbana y cielo azul.png","fotos/antillas/Terraza espaciosa con vistas al horizonte.png","fotos/antillas/Terraza iluminada con vista urbana.png","fotos/antillas/Terraza moderna con baldosas grises.png"];
+
+const PHOTOS_BELGICA = ["fotos/belgica/1.png","fotos/belgica/2.png","fotos/belgica/3.png","fotos/belgica/4.png","fotos/belgica/5.png","fotos/belgica/Apartamento moderno con luz natural.png","fotos/belgica/Área de jardín con árbol y enredaderas.png","fotos/belgica/Balcony moderno con vista urbana.png","fotos/belgica/Balcón moderno con vista a la calle.png","fotos/belgica/Baño moderno con detalles elegantes (1).png","fotos/belgica/Baño moderno con detalles elegantes.png","fotos/belgica/Baño moderno con detalles en madera.png","fotos/belgica/Baño moderno con mármol y granito.png","fotos/belgica/Cocina moderna con detalles elegantes.png","fotos/belgica/Cocina moderna con detalles en granito.png","fotos/belgica/Cocina moderna con detalles minimalistas.png","fotos/belgica/Cocina moderna con detalles naturales.png","fotos/belgica/Cocina moderna con encimera de granito.png","fotos/belgica/Cocina moderna con vista al salón.png","fotos/belgica/Cocina moderna en apartamento luminoso.png","fotos/belgica/Cocina moderna y área de servicio.png","fotos/belgica/Complejo residencial moderno en un día soleado.png","fotos/belgica/Cuarto de servicio moderno y organizado.png","fotos/belgica/Dormitorio luminoso con detalles modernos.png","fotos/belgica/Dormitorio luminoso con mesa de noche.png","fotos/belgica/Dormitorio minimalista y luminoso (1).png","fotos/belgica/Dormitorio minimalista y luminoso.png","fotos/belgica/Dormitorio moderno con luz natural.png","fotos/belgica/Elevador moderno en un espacio brillante.png","fotos/belgica/Escalera moderna con luz natural.png","fotos/belgica/Espacio de coworking moderno y luminoso.png","fotos/belgica/Espacio moderno con balcón y cocina abierta.png","fotos/belgica/Estacionamiento subterráneo moderno y limpio.png","fotos/belgica/Garaje moderno y vacío.png","fotos/belgica/Garaje subterráneo bien iluminado.png","fotos/belgica/Garaje subterráneo con detalles industriales.png","fotos/belgica/Habitación de servicios con calefón y panel eléctrico.png","fotos/belgica/Habitación luminosa y relajante.png","fotos/belgica/Habitación minimalista con madera clara.png","fotos/belgica/Habitación moderna con detalles elegantes.png","fotos/belgica/Habitación moderna y luminosa.png","fotos/belgica/Interior minimalista con luz natural.png","fotos/belgica/Lobby moderno con vista exterior.png","fotos/belgica/Lobby moderno y espacioso con detalles minimalistas.png","fotos/belgica/Oficina luminosa con ventana y muebles sencillos.png","fotos/belgica/Pasillo iluminado hacia el dormitorio.png","fotos/belgica/Pasillo moderno con puertas y césped artificial.png","fotos/belgica/Pasillo moderno con vegetación y luz natural.png","fotos/belgica/Pasillo moderno y luminoso.png","fotos/belgica/Patio moderno entre edificios residenciales.png","fotos/belgica/Rampa de salida en estacionamiento subterráneo.png","fotos/belgica/Sala de estar luminosa y moderna.png","fotos/belgica/Sala de máquinas iluminada y ordenada.png","fotos/belgica/Sala minimalista con vista al exterior.png","fotos/belgica/Sala moderna con detalles elegantes.png","fotos/belgica/Sala moderna con puerta abierta.png","fotos/belgica/Terraza en azotea con luz natural.png","fotos/belgica/Terraza en azotea con vista clara.png","fotos/belgica/Terraza luminosa con vista al horizonte.png","fotos/belgica/Vestidor con estanterías a medida.png","fotos/belgica/Vestidor con luz natural y madera.png","fotos/belgica/Vestidor moderno con sistema de almacenamiento.png","fotos/belgica/Vista urbana desde el balcón.png"];
+
+const PHOTOS_DEL_VALLE = ["fotos/del-valle/1.png","fotos/del-valle/2.png","fotos/del-valle/3.png","fotos/del-valle/4.png","fotos/del-valle/5.png","fotos/del-valle/Apartamento en renovación con luz brillante.png","fotos/del-valle/Apartamento nuevo con vista luminosa.png","fotos/del-valle/Baño en construcción con detalles modernos.png","fotos/del-valle/Baño moderno en construcción.png","fotos/del-valle/Cocina en proceso de instalación.png","fotos/del-valle/Cocina moderna en construcción.png","fotos/del-valle/Cocina moderna en proceso de instalación.png","fotos/del-valle/Cocina moderna sin terminar con detalles en madera.png","fotos/del-valle/Edificio moderno en construcción.png","fotos/del-valle/Espacio amplio con vistas urbanas.png","fotos/del-valle/Habitación luminosa con vista urbana.png","fotos/del-valle/Habitación vacía con luz natural.png","fotos/del-valle/Lavadero luminoso y moderno.png"];
+
+const PHOTOS_EMPERADORES = ["fotos/emperadores/1.png","fotos/emperadores/2.png","fotos/emperadores/3.png","fotos/emperadores/4.png","fotos/emperadores/5.png","fotos/emperadores/Baño moderno en construcción con luz natural.png","fotos/emperadores/Cuarto de servicio en construcción.png","fotos/emperadores/Cuarto técnico sin terminar en construcción.png","fotos/emperadores/Ducha en progreso con luz natural.png","fotos/emperadores/Ducha sin terminar en baño moderno.png","fotos/emperadores/Edificio moderno en construcción urbana.png","fotos/emperadores/Entrada luminosa y pasillo largo.png","fotos/emperadores/Espacio abierto en construcción.png","fotos/emperadores/Espacio moderno en construcción.png","fotos/emperadores/Habitación sin terminar con luz natural.png","fotos/emperadores/Interior en construcción con diseño moderno.png","fotos/emperadores/Pasillo luminoso de edificio moderno.png","fotos/emperadores/Sala de utilidades con luz natural.png","fotos/emperadores/Sala luminosa con ventanales modernos.png","fotos/emperadores/Sala luminosa con ventanas abiertas.png","fotos/emperadores/Sala luminosa y minimalista (1).png","fotos/emperadores/Sala luminosa y vacía con detalles minimalistas.png","fotos/emperadores/Sala moderna con azulejos geométricos.png","fotos/emperadores/Sala vacía con luz natural (1).png","fotos/emperadores/Sala vacía con luz natural (2).png","fotos/emperadores/Sala vacía con luz natural.png","fotos/emperadores/Sala vacía en construcción.png","fotos/emperadores/Sótano en construcción con materiales y herramientas.png"];
+
+const PHOTOS_OBRERO = ["fotos/obrero-mundial/1.png","fotos/obrero-mundial/2.png","fotos/obrero-mundial/3.png","fotos/obrero-mundial/4.png","fotos/obrero-mundial/5.png","fotos/obrero-mundial/Apartamento moderno con cocina abierta.png","fotos/obrero-mundial/Apartamento vacío con luz natural.png","fotos/obrero-mundial/Armario moderno con detalles en madera.png","fotos/obrero-mundial/Balcón de vidrio con vista urbana.png","fotos/obrero-mundial/Balcón moderno con vista urbana.png","fotos/obrero-mundial/Baño de ducha minimalista y moderno.png","fotos/obrero-mundial/Baño moderno y luminoso compacto.png","fotos/obrero-mundial/Baño moderno y minimalista iluminado.png","fotos/obrero-mundial/Cocina moderna con detalles oscuros.png","fotos/obrero-mundial/Cocina moderna con peninsula extendida.png","fotos/obrero-mundial/Cocina moderna y minimalista (1).png","fotos/obrero-mundial/Cocina moderna y minimalista.png","fotos/obrero-mundial/Dormitorio moderno con luz natural.png","fotos/obrero-mundial/Espacio luminoso con vista verde.png","fotos/obrero-mundial/Espacio moderno con pisos de cerámica.png","fotos/obrero-mundial/Espacio moderno y luminoso vacío.png","fotos/obrero-mundial/Espacio vacío y luminoso con azulejos.png","fotos/obrero-mundial/Habitación luminosa y minimalista.png","fotos/obrero-mundial/Habitación moderna con armario minimalista.png","fotos/obrero-mundial/Habitación moderna de tonos neutros.png","fotos/obrero-mundial/Habitación moderna y luminosa.png","fotos/obrero-mundial/Pasillo en construcción con barra a medio hacer.png","fotos/obrero-mundial/Pasillo sin terminar en edificio moderno.png","fotos/obrero-mundial/Sala amplia con puerta de vidrio.png","fotos/obrero-mundial/Sala de estar vacía y luminosa.png","fotos/obrero-mundial/Sala luminosa con ventana y puerta abierta.png","fotos/obrero-mundial/Sala luminosa con vista exterior.png","fotos/obrero-mundial/Sala luminosa con vista verde.png","fotos/obrero-mundial/Sala minimalista con cocina moderna.png","fotos/obrero-mundial/Sala minimalista y luminosa.png","fotos/obrero-mundial/Sala moderna con luz natural..png","fotos/obrero-mundial/Sala moderna con ventana amplia.png","fotos/obrero-mundial/Sala moderna con vista verde.png","fotos/obrero-mundial/Techo de edificio en construcción.png","fotos/obrero-mundial/Terraza enérgica con luz natural.png","fotos/obrero-mundial/Terraza luminosa con vistas despejadas.png","fotos/obrero-mundial/Terraza moderna con cielos despejados.png","fotos/obrero-mundial/Terraza moderna con luz natural.png","fotos/obrero-mundial/Terraza moderna iluminada por el sol.png"];
+
+const PHOTOS_THE_PARK = ["fotos/the-park/1.png","fotos/the-park/2.png","fotos/the-park/3.png","fotos/the-park/4.png","fotos/the-park/5.png","fotos/the-park/---.png","fotos/the-park/.DS_Store","fotos/the-park/Armario moderno en habitación luminosa.png","fotos/the-park/Área de lavandería moderna y funcional.png","fotos/the-park/Baño moderno con detalles elegantes (1).png","fotos/the-park/Baño moderno con detalles elegantes.png","fotos/the-park/Baño moderno con ducha de cristal frosted.png","fotos/the-park/Baño moderno visto desde el pasillo.png","fotos/the-park/Baño moderno y elegante con iluminación cálida.png","fotos/the-park/Baño moderno y luminoso.png","fotos/the-park/Camino rojo en jardín urbano.png","fotos/the-park/Cocina moderna con detalles en negro.png","fotos/the-park/Cocina moderna con luz natural (1).png","fotos/the-park/Cocina moderna con luz natural.png","fotos/the-park/Cocina moderna con suelos brillantes.png","fotos/the-park/Edificio moderno con jardín vibrante.png","fotos/the-park/Edificio moderno con vista urbana.png","fotos/the-park/Edificio y fachada en armonía.png","fotos/the-park/Entrada moderna al spa.png","fotos/the-park/Espacio de trabajo moderno y luminoso.png","fotos/the-park/Espacio moderno con iluminación natural.png","fotos/the-park/Esquina de juegos con juguetes coloridos.png","fotos/the-park/Gimnasio moderno con equipos de ejercicio.png","fotos/the-park/Gimnasio moderno con vista al exterior.png","fotos/the-park/Gimnasio moderno iluminado y espacioso.png","fotos/the-park/Habitación infantil con vista al jardín.png","fotos/the-park/Habitación moderna con luz natural (1).png","fotos/the-park/Habitación moderna con luz natural.png","fotos/the-park/Habitación moderna con muebles oscuros.png","fotos/the-park/Habitación moderna con vista urbana.png","fotos/the-park/Jacuzzi en terraza con vista al horizonte.png","fotos/the-park/Jardín comunitario entre edificios modernos.png","fotos/the-park/Jardín moderno rodeado de edificios.png","fotos/the-park/Juego en el patio soleado.png","fotos/the-park/Juguete de madera en el jardín.png","fotos/the-park/Lounge moderno con vistas al patio.png","fotos/the-park/Pasillo moderno con baño al fondo.png","fotos/the-park/Pasillo moderno con detalles en madera.png","fotos/the-park/Pasillo moderno con puerta abierta.png","fotos/the-park/Pasillo moderno con puerta al baño.png","fotos/the-park/Pasillo moderno con suelos brillantes.png","fotos/the-park/Pasillo moderno con vista luminosa.png","fotos/the-park/Patio entre edificios modernos y naturaleza.png","fotos/the-park/Patio iluminado entre edificios modernos.png","fotos/the-park/Patio moderno con pared de agua.png","fotos/the-park/Piscina azul bajo el sol brillante.png","fotos/the-park/Piscina moderna con spa y banco.png","fotos/the-park/Piscina moderna con spa y muro de piedra.png","fotos/the-park/Puerta moderna hacia el baño.png","fotos/the-park/Sala de juegos iluminada y colorida.png","fotos/the-park/Sala minimalista con ventana luminosa.png","fotos/the-park/Sala minimalista con vista urbana.png","fotos/the-park/Sala moderna con pared texturizada.png","fotos/the-park/Sala moderna con ventana y reflejos.png","fotos/the-park/Sala moderna con vista urbana.png","fotos/the-park/Terraza con camino y vista urbana.png","fotos/the-park/Terraza con vista y jacuzzis.png","fotos/the-park/Terraza moderna con asientos orgánicos.png","fotos/the-park/Terraza moderna con pergola y cocina.png","fotos/the-park/Terraza moderna con vista panorámica.png","fotos/the-park/Terraza moderna con vista urbana.png","fotos/the-park/Terraza urbana con cocina exterior.png","fotos/the-park/Vista urbana desde una ventana elevada.png"];
+
+const PROPS = {
+  1: {
+    title: 'Departamento en Portales Oriente',
+    address: 'Emperadores 45, Col. Portales Oriente, Alcaldía Benito Juárez',
+    location: 'Portales Oriente, Benito Juárez, Ciudad de México',
+    price: 3844290, priceFormatted: '$3,844,290',
+    beds: 2, baths: 2, parking: 1, area: 69, levels: null, year: 2026,
+    code: 'NN-GWT391', delivery: 'Mayo 2026', pdfUrl: 'FICHA EMPERADORES 45-403$3,844,290.pdf',
+    description: DESC_PORTALES,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Elevador','Roof garden común','Cocina integral','Sala, comedor y cocina','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🔒','Vigilancia'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Área de lavado']],
+    tags: ['Depto.','Elevador','Roof garden'],
+    pois: POIS_PORTALES,
+    photos: PHOTOS_EMPERADORES
+  },
+  2: {
+    title: 'Departamento con terraza privada en Portales Norte',
+    address: 'Antillas, Col. Portales Norte, Alcaldía Benito Juárez',
+    location: 'Portales Norte, Benito Juárez, Ciudad de México',
+    price: 4580700, priceFormatted: '$4,580,700',
+    beds: 2, baths: 2, parking: 1, area: 85, levels: null, year: 2026,
+    code: 'NN-GWT698', delivery: 'Abril 2026', pdfUrl: 'FICHA TECNICA ANTILLAS $4,580,700.pdf',
+    description: DESC_PORTALES,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Terraza privada','Elevador','Cocina integral','Sala, comedor y cocina','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🌿','Terraza privada'],['🔒','Vigilancia'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Área de lavado']],
+    tags: ['Depto.','Terraza privada'],
+    pois: POIS_PORTALES,
+    photos: PHOTOS_ANTILLAS
+  },
+  3: {
+    title: 'Departamento con balcón en Portales Norte',
+    address: 'Antillas, Col. Portales Norte, Alcaldía Benito Juárez',
+    location: 'Portales Norte, Benito Juárez, Ciudad de México',
+    price: 4720860, priceFormatted: '$4,720,860',
+    beds: 2, baths: 2, parking: 1, area: 69, levels: null, year: 2026,
+    code: 'NN-GWT715', delivery: 'Abril 2026', pdfUrl: 'FICHA TECNICA ANTILLAS $4,720,860.pdf',
+    description: DESC_PORTALES,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Balcón privado','Elevador','Cocina integral','Sala, comedor y cocina','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🏠','Balcón'],['🔒','Vigilancia'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Área de lavado']],
+    tags: ['Depto.','Balcón'],
+    pois: POIS_PORTALES,
+    photos: PHOTOS_ANTILLAS
+  },
+  4: {
+    title: 'Departamento con roof privado en Portales Norte',
+    address: 'Antillas, Col. Portales Norte, Alcaldía Benito Juárez',
+    location: 'Portales Norte, Benito Juárez, Ciudad de México',
+    price: 5886444, priceFormatted: '$5,886,444',
+    beds: 2, baths: 2, parking: 2, area: 136, levels: null, year: 2026,
+    code: 'NN-GWT727', delivery: 'Abril 2026', pdfUrl: 'FICHA TECNICA ANTILLAS 136 M2 $5,886,444.pdf',
+    description: DESC_PORTALES,
+    features: ['2 recámaras con clósets','2 baños completos','2 cajones de estacionamiento','Roof garden privado','Balcón privado','Elevador','Cocina integral','Sala, comedor y cocina','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof privado'],['🏠','Balcón'],['🔒','Vigilancia'],['🍳','Cocina integral'],['🚗','2 Estacionamientos'],['🧺','Área de lavado']],
+    tags: ['Depto.','Roof privado','Balcón'],
+    pois: POIS_PORTALES,
+    photos: PHOTOS_ANTILLAS
+  },
+  5: {
+    title: 'Departamento en Portales Norte · Antillas 408-103',
+    address: 'Antillas 408, Dept. 103, Col. Portales Norte, Alcaldía Benito Juárez',
+    location: 'Portales Norte, Benito Juárez, Ciudad de México',
+    price: 4286909, priceFormatted: '$4,286,909',
+    beds: 2, baths: 2, parking: 1, area: 60, levels: null, year: 2026,
+    code: 'NN-GWT723', delivery: 'Abril 2026', pdfUrl: 'FICHA TECNICA ANTILLAS 408-103 $4,286,909.pdf',
+    description: 'Vive en un moderno desarrollo ubicado en la colonia Portales Norte, en la alcaldía Benito Juárez. Una zona con excelente conectividad, gran plusvalía y todos los servicios a tu alcance dentro de la Ciudad de México. Este departamento destaca por su iluminación natural al ser exterior, además de una distribución eficiente que brinda comodidad y practicidad para tu día a día.',
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Sala, comedor y cocina','Cocina integral','Área de lavado','Cisterna','Accesibilidad para adultos mayores'],
+    amenities: [['🏗️','Elevador'],['🔒','Vigilancia'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado'],['💧','Cisterna'],['♿','Accesibilidad']],
+    tags: ['Depto.','Elevador','2026'],
+    pois: POIS_PORTALES,
+    photos: PHOTOS_ANTILLAS
+  },
+  6: {
+    title: 'Departamento con balcón y roof garden en Portales Sur · Bélgica',
+    address: 'Bélgica, Col. Portales Sur, Alcaldía Benito Juárez',
+    location: 'Portales Sur, Benito Juárez, Ciudad de México',
+    price: 5362751, priceFormatted: '$5,362,751',
+    beds: 2, baths: 2, parking: 1, area: 81, levels: null, year: 2025,
+    code: 'NN-GWU830', delivery: null, pdfUrl: 'FICHA TECNICA BELGICA $5,362,751.pdf',
+    description: 'Vive en un exclusivo desarrollo ubicado en la colonia Portales Sur, en la alcaldía Benito Juárez. Una zona residencial con excelente conectividad y alta demanda dentro de la Ciudad de México. Este moderno departamento combina diseño contemporáneo, privacidad y una distribución inteligente en cada espacio. Interior de 78.97 m² más balcón de 2.27 m².',
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Balcón privado (2.27 m²)','Roof garden común','Sala, comedor y cocina equipada','Área de lavado independiente','Gas natural','Accesibilidad para adultos mayores'],
+    amenities: [['🎪','Lobby'],['🏗️','Elevador'],['🌿','Roof garden'],['🏠','Balcón'],['🔒','Vigilancia 24h'],['🔴','Circuito cerrado'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado'],['♿','Accesibilidad']],
+    tags: ['Depto.','Balcón','Roof garden'],
+    pois: POIS_PORTALES_BELGICA,
+    photos: PHOTOS_BELGICA
+  },
+  7: {
+    title: 'Departamento exterior con balcón en Portales Sur · Bélgica',
+    address: 'Bélgica, Col. Portales Sur, Alcaldía Benito Juárez',
+    location: 'Portales Sur, Benito Juárez, Ciudad de México',
+    price: 4706313, priceFormatted: '$4,706,313',
+    beds: 2, baths: 2, parking: 1, area: 77, levels: null, year: 2026,
+    code: 'NN-GUY858', delivery: 'Abril 2026', pdfUrl: 'FICHA TECNICA BELGICA EXT $4,706,313.pdf',
+    description: 'Vive en un exclusivo desarrollo ubicado en la colonia Portales Sur, en la alcaldía Benito Juárez. Una zona residencial con excelente conectividad y alta demanda dentro de la Ciudad de México. Este moderno departamento exterior combina diseño contemporáneo, privacidad y una distribución inteligente en cada espacio. Balcón de 7.82 m y mascotas permitidas.',
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Balcón exterior (7.82 m)','Roof garden común','Sala, comedor y cocina equipada','Área de lavado independiente','Mascotas permitidas','Portero'],
+    amenities: [['🎪','Lobby'],['🏗️','Elevador'],['🌿','Roof garden'],['🏠','Balcón exterior'],['🔒','Vigilancia 24h'],['🐾','Mascotas'],['👮','Portero'],['🔴','Circuito cerrado'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado']],
+    tags: ['Depto.','Balcón','Mascotas'],
+    pois: POIS_PORTALES_BELGICA,
+    photos: PHOTOS_BELGICA
+  },
+  8: {
+    title: 'Departamento en Portales Norte · Emperadores',
+    address: 'Emperadores, Col. Portales Norte, Alcaldía Benito Juárez',
+    location: 'Portales Norte, Benito Juárez, Ciudad de México',
+    price: 3694460, priceFormatted: '$3,694,460',
+    beds: 2, baths: 2, parking: 1, area: 71, levels: null, year: 2026,
+    code: 'NN-GWS895', delivery: 'Abril 2026', pdfUrl: 'FICHA TECNICA EMPERADORES $3,694,460.pdf',
+    description: 'Vive en un desarrollo bien ubicado sobre Emperadores, en la colonia Portales Norte, alcaldía Benito Juárez. Una zona con gran conectividad, alta demanda y excelente calidad de vida dentro de la Ciudad de México. Este departamento destaca por su distribución funcional, espacios bien aprovechados y amenidades que elevan tu estilo de vida.',
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Roof garden común','Sala, comedor y cocina equipada','Cocina integral','Área de lavado','Cuarto de servicio','Terraza'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🔒','Vigilancia 24h'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['💧','Cisterna'],['🧺','Cuarto de lavado'],['🏠','Terraza']],
+    tags: ['Depto.','Roof garden','2026'],
+    pois: POIS_PORTALES_BELGICA,
+    photos: PHOTOS_EMPERADORES
+  },
+  9: {
+    title: 'Departamento con balcón en Piedad Narvarte',
+    address: 'Obrero Mundial, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 4851450, priceFormatted: '$4,851,450',
+    beds: 2, baths: 2, parking: 1, area: 74, levels: null, year: 2026,
+    code: 'NN-GWM914', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL 74MTS $4,851,450.pdf',
+    description: DESC_NARVARTE,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Balcón privado','Roof garden común','Elevador','Cocina integral','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🏠','Balcón'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado']],
+    tags: ['Depto.','Balcón','Roof garden','Elevador'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  10: {
+    title: 'Departamento 201 con terraza en Piedad Narvarte',
+    address: 'Obrero Mundial, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 5631500, priceFormatted: '$5,631,500',
+    beds: 2, baths: 2, parking: 1, area: 79, levels: null, year: 2026,
+    code: 'NN-GWT650', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL $5,631,500.pdf',
+    description: DESC_NARVARTE,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Terraza privada','Roof garden común','Elevador','Cocina integral','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🏠','Terraza privada'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado']],
+    tags: ['Depto.','Terraza','Roof garden','Elevador'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  11: {
+    title: 'Departamento con terraza privada 36 m² en Piedad Narvarte',
+    address: 'Obrero Mundial, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 5858100, priceFormatted: '$5,858,100',
+    beds: 2, baths: 2, parking: 1, area: 74, levels: null, year: 2026,
+    code: 'NN-GWT656', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL $5,858,100.pdf',
+    description: DESC_NARVARTE,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Terraza privada de 36 m²','Roof garden común','Elevador','Cocina integral','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🏠','Terraza 36 m²'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado']],
+    tags: ['Depto.','Terraza privada','Roof garden'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  12: {
+    title: 'Departamento con terraza privada 41 m² en Piedad Narvarte',
+    address: 'Obrero Mundial, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 6010225, priceFormatted: '$6,010,225',
+    beds: 2, baths: 2, parking: 1, area: 74, levels: 4, year: 2026,
+    code: 'NN-GWT685', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL $6,010,225.pdf',
+    description: DESC_NARVARTE,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Terraza privada de 41 m²','Roof garden','Elevador','Cocina integral','Área de lavado'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🏠','Terraza 41 m²'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado']],
+    tags: ['Depto.','Terraza privada','Roof garden','4 niveles'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  13: {
+    title: 'Departamento con amenidades en Narvarte Oriente',
+    address: 'Col. Narvarte Oriente, Alcaldía Benito Juárez',
+    location: 'Narvarte Oriente, Benito Juárez, Ciudad de México',
+    price: 4000000, priceFormatted: '$4,000,000',
+    beds: 2, baths: 2, parking: 1, area: 67, levels: null, year: null,
+    code: 'NN-XQ1000155', delivery: null, pdfUrl: 'FICHA TECNICA THE PARK $4,000,000.pdf',
+    description: 'Departamento en la exclusiva colonia Narvarte Oriente, dentro de un desarrollo con amenidades de primer nivel. Alberca, gimnasio y áreas comunes para residentes. Pet friendly, ideal para quienes buscan calidad de vida y una ubicación privilegiada en la alcaldía Benito Juárez.',
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Pet friendly','Alberca','Gimnasio','Elevador','Áreas comunes'],
+    amenities: [['🏊','Alberca'],['🏋️','Gimnasio'],['🐾','Pet friendly'],['🏗️','Elevador'],['🔒','Vigilancia'],['🚗','Estacionamiento cubierto']],
+    tags: ['Depto.','Alberca','Gimnasio','Mascotas'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_THE_PARK
+  },
+  14: {
+    title: 'Departamento 1 recámara con roof garden en Narvarte Poniente',
+    address: 'Obrero Mundial 536, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 3660600, priceFormatted: '$3,660,600',
+    beds: 1, baths: 1, parking: 1, area: 58, levels: 2, year: 2026,
+    code: 'NN-GWT668', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL $3,660,600.pdf',
+    description: DESC_NARVARTE,
+    features: ['1 recámara con clóset','1 baño completo','1 cajón de estacionamiento','Roof garden común','Sala, comedor y cocina','Cocina integral','Área de lavado','Accesibilidad para adultos mayores'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado'],['♿','Accesibilidad']],
+    tags: ['Depto.','Roof garden','Elevador'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  15: {
+    title: 'Departamento 1 recámara con roof privado en Narvarte Poniente',
+    address: 'Obrero Mundial 536, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 4462725, priceFormatted: '$4,462,725',
+    beds: 1, baths: 1, parking: 1, area: 58, levels: 4, year: 2026,
+    code: 'NN-GWT681', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL $4,462,725.pdf',
+    description: DESC_NARVARTE,
+    features: ['1 recámara con clóset','1 baño completo','1 cajón de estacionamiento','Roof garden privado','Sala, comedor y cocina','Cocina integral','Área de lavado','Accesibilidad para adultos mayores'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof privado'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado'],['♿','Accesibilidad']],
+    tags: ['Depto.','Roof privado','Elevador'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  16: {
+    title: 'Departamento 2 recámaras con roof garden en Narvarte Poniente',
+    address: 'Obrero Mundial 536, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 4712000, priceFormatted: '$4,712,000',
+    beds: 2, baths: 2, parking: 1, area: 74, levels: 2, year: 2026,
+    code: 'NN-GWT672', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL $4,712,000.pdf',
+    description: DESC_NARVARTE + ' Cuenta con 78.4 m² habitables y una distribución que maximiza cada espacio.',
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Roof garden común','Sala, comedor y cocina','Cocina integral','Área de lavado','Accesibilidad para adultos mayores'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado'],['♿','Accesibilidad']],
+    tags: ['Depto.','Roof garden','Elevador'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  17: {
+    title: 'Departamento 2 recámaras con roof garden en Narvarte Poniente',
+    address: 'Obrero Mundial 536, Col. Piedad Narvarte, Alcaldía Benito Juárez',
+    location: 'Piedad Narvarte, Benito Juárez, Ciudad de México',
+    price: 4744000, priceFormatted: '$4,744,000',
+    beds: 2, baths: 2, parking: 1, area: 74, levels: 3, year: 2026,
+    code: 'NN-GWT677', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA OBRERO MUNDIAL $4,744,000.pdf',
+    description: DESC_NARVARTE,
+    features: ['2 recámaras con clósets','2 baños completos','1 cajón de estacionamiento','Roof garden común','Sala, comedor y cocina','Cocina integral','Área de lavado','Accesibilidad para adultos mayores'],
+    amenities: [['🏗️','Elevador'],['🌿','Roof garden'],['🔒','Vigilancia'],['💧','Cisterna'],['🍳','Cocina integral'],['🚗','Estacionamiento cubierto'],['🧺','Cuarto de lavado'],['♿','Accesibilidad']],
+    tags: ['Depto.','Roof garden','2026'],
+    pois: POIS_NARVARTE,
+    photos: PHOTOS_OBRERO
+  },
+  18: {
+    title: 'Departamento 3 recámaras con balcón en Del Valle Sur',
+    address: 'Col. Del Valle Sur, Alcaldía Benito Juárez',
+    location: 'Del Valle Sur, Benito Juárez, Ciudad de México',
+    price: 6950000, priceFormatted: '$6,950,000',
+    beds: 3, baths: 2, parking: 2, area: 114, levels: 1, year: 2026,
+    code: 'NN-GUY864', delivery: 'Mayo 2026', pdfUrl: 'FICHA TECNICA DEL VALLE.pdf',
+    description: 'Vive en un exclusivo desarrollo ubicado en la colonia Del Valle Sur, en la alcaldía Benito Juárez. Una de las zonas residenciales con mayor tradición, plusvalía y calidad de vida dentro de la Ciudad de México. Este departamento combina amplitud, funcionalidad y excelente distribución, ideal para familias o quienes buscan mayor espacio en una ubicación privilegiada. 114 m² totales (107.41 m² interiores + 6.80 m² de balcón).',
+    features: ['3 recámaras con clósets','2 baños completos','2 cajones de estacionamiento','114 m² totales (107.41 m² int. + 6.80 m² balcón)','Balcón privado','Sala, comedor y cocina equipada','Área de lavado independiente'],
+    amenities: [['🎪','Lobby'],['🏗️','Elevador'],['🌿','Roof garden común'],['🏠','Balcón'],['🔒','Vigilancia 24h'],['🔴','Circuito cerrado'],['🐾','Mascotas permitidas'],['🍳','Cocina integral'],['🚗','2 Estacionamientos']],
+    tags: ['Depto.','3 Recámaras','Balcón','Roof garden','Mascotas'],
+    pois: POIS_DEL_VALLE,
+    photos: PHOTOS_DEL_VALLE
+  }
+};
+
+/* ─── Lightbox logic ─── */
+function encPath(p) { return p.split('/').map(s => encodeURIComponent(s)).join('/'); }
+let lbPhotos = [], lbIdx = 0;
+function openLB(photos, idx) {
+  if (!photos.length) return;
+  lbPhotos = photos; lbIdx = idx;
+  document.getElementById('lbImg').src = encPath(photos[lbIdx]);
+  document.getElementById('lbCounter').textContent = `${lbIdx+1} / ${photos.length}`;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLB() { document.getElementById('lightbox').classList.remove('open'); }
+function lbPrev() { lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length; openLB(lbPhotos, lbIdx); }
+function lbNext() { lbIdx = (lbIdx + 1) % lbPhotos.length; openLB(lbPhotos, lbIdx); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); if (e.key === 'ArrowLeft') lbPrev(); if (e.key === 'ArrowRight') lbNext(); });
+
+/* ─── Render ─── */
+function logoSVG(op) {
+  return `<svg width="48" height="48" viewBox="0 0 80 80" fill="none" opacity="${op}">
+    <path d="M40 8 L72 36 L72 72 L8 72 L8 36 Z" stroke="white" stroke-width="3" fill="none"/>
+    <path d="M40 8 L72 36" stroke="white" stroke-width="3"/>
+    <path d="M8 36 L40 8" stroke="white" stroke-width="3"/>
+    <rect x="30" y="48" width="20" height="24" stroke="white" stroke-width="2.5" fill="none"/>
+    <rect x="14" y="44" width="12" height="10" stroke="white" stroke-width="2" fill="none"/>
+    <rect x="54" y="44" width="12" height="10" stroke="white" stroke-width="2" fill="none"/>
+  </svg>`;
+}
+
+function cameraIcon() {
+  return `<svg width="34" height="28" viewBox="0 0 34 28" fill="none">
+    <rect x="1" y="7" width="32" height="20" rx="3" stroke="white" stroke-width="1.4" fill="none"/>
+    <circle cx="17" cy="17" r="6" stroke="white" stroke-width="1.4" fill="none"/>
+    <rect x="12" y="3" width="10" height="5" rx="1.5" stroke="white" stroke-width="1.4" fill="none"/>
+    <circle cx="27" cy="11" r="1.5" fill="white"/>
+  </svg>`;
+}
+
+function gallerySlot(p, idx, isHero) {
+  const photo = p.photos[idx];
+  const cls = isHero ? 'g-slot g-hero' : 'g-slot';
+  if (photo) {
+    return `<div class="${cls}" onclick="openLB(currentProp.photos,${idx})">
+      <img src="${encPath(photo)}" alt="Foto ${idx+1} de ${p.title}">
+    </div>`;
+  }
+  if (isHero) {
+    return `<div class="${cls}">
+      <div class="g-ph-hero">
+        <div class="g-ph-hero-logo">${logoSVG(1)}</div>
+        <div class="g-ph-hero-title">${p.title}</div>
+        <div class="g-ph-hero-price">${p.priceFormatted}</div>
+        <div class="g-ph-hero-label">Fotos próximamente</div>
+      </div>
+    </div>`;
+  }
+  return `<div class="${cls}">
+    <div class="g-ph-small">
+      ${cameraIcon()}
+      <span class="g-ph-small-lbl">Foto ${idx + 1}</span>
+    </div>
+  </div>`;
+}
+
+function poisHTML(pois) {
+  if (!pois || !pois.length) return '';
+  return pois.map(g => `
+    <div class="poi-card">
+      <div class="poi-head">
+        <span class="poi-head-icon">${g.icon}</span>
+        <span class="poi-head-title">${g.title}</span>
+      </div>
+      <ul class="poi-list">${g.items.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+}
+
+let currentProp = null;
+function render() {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  const p = PROPS[id];
+  currentProp = p;
+  const app = document.getElementById('app');
+
+  if (!p) {
+    app.innerHTML = `<div class="not-found">
+      <h2>Propiedad no encontrada</h2>
+      <p>La propiedad que buscas no existe o fue removida. Explora todas nuestras opciones disponibles.</p>
+      <a href="compra.html">Ver todas las propiedades</a>
+    </div>`;
+    return;
+  }
+
+  document.getElementById('pageTitle').textContent = `${p.title} — Mónica Terrés Bienes Raíces`;
+
+  const deliveryBadge = p.delivery
+    ? `<span class="pbadge pbadge-green">✨ ${p.delivery}</span>` : '';
+  const codeBadge = p.code && p.code !== '—'
+    ? `<span class="pbadge pbadge-grey">${p.code}</span>` : '';
+  const tagsBadges = p.tags.map(t => `<span class="pbadge pbadge-tag">${t}</span>`).join('');
+
+  const levelsSpec = p.levels
+    ? `<div class="sc"><span class="sc-icon">🏢</span><span class="sc-val">${p.levels}</span><span class="sc-lbl">Niveles</span></div>` : '';
+  const yearSpec = p.year
+    ? `<div class="sc"><span class="sc-icon">📅</span><span class="sc-val">${p.year}</span><span class="sc-lbl">Entrega</span></div>` : '';
+  const specsCount = 3 + (p.levels ? 1 : 0) + (p.year ? 1 : 0);
+  const specsCols = `repeat(${specsCount}, 1fr)`;
+
+  const featuresHTML = p.features.map(f => `
+    <div class="feat">
+      <div class="feat-dot">${CHECK}</div>
+      <span>${f}</span>
+    </div>`).join('');
+
+  const amenHTML = p.amenities.map(([icon, label]) => `
+    <div class="amen-tag"><span class="at-icon">${icon}</span><span>${label}</span></div>`).join('');
+
+  const poisSection = p.pois ? `
+    <div class="prop-section">
+      <h2 class="sec-heading">Puntos de interés</h2>
+      <div class="pois-grid">${poisHTML(p.pois)}</div>
+    </div>` : '';
+
+  const addressSection = `
+    <div class="prop-section">
+      <h2 class="sec-heading">Ubicación</h2>
+      <div class="address-box">
+        <div class="address-icon">
+          <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
+            <path d="M9 0C4.03 0 0 4.03 0 9C0 15.75 9 22 9 22C9 22 18 15.75 18 9C18 4.03 13.97 0 9 0ZM9 12C7.34 12 6 10.66 6 9C6 7.34 7.34 6 9 6C10.66 6 12 7.34 12 9C12 10.66 10.66 12 9 12Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="address-text">
+          <div class="addr-label">Dirección</div>
+          <div class="addr-val">${p.address}</div>
+        </div>
+      </div>
+      ${p.pois ? `<div class="pois-grid">${poisHTML(p.pois)}</div>` : ''}
+    </div>`;
+
+  const ccDetails = [
+    ['Tipo', 'Departamento'],
+    ['Recámaras', p.beds],
+    ['Baños', p.baths],
+    ['Estacionamiento', p.parking],
+    ['Área construida', `${p.area} m²`],
+    p.levels ? ['Niveles', p.levels] : null,
+    p.year ? ['Año entrega', p.year] : null,
+    p.code && p.code !== '—' ? ['Código', p.code] : null,
+  ].filter(Boolean).map(([l,v]) => `
+    <div class="cc-detail-row">
+      <span class="cc-detail-lbl">${l}</span>
+      <span class="cc-detail-val">${v}</span>
+    </div>`).join('');
+
+  const waMsg = encodeURIComponent(`Hola Mónica, me interesa la propiedad "${p.title}" (${p.priceFormatted}). ¿Podría darme más información?`);
+
+  app.innerHTML = `
+    <!-- GALLERY -->
+    <section class="gallery-section">
+      <div class="gallery-inner">
+        <div class="gallery-grid" style="grid-template-columns:1.55fr 1fr 1fr;">
+          ${gallerySlot(p, 0, true)}
+          ${gallerySlot(p, 1, false)}
+          ${gallerySlot(p, 2, false)}
+          ${gallerySlot(p, 3, false)}
+          ${gallerySlot(p, 4, false)}
+          ${p.photos.length ? `<button class="gallery-photos-btn" onclick="openLB(currentProp.photos,0)">
+            📷 Ver todas las fotos (${p.photos.length})
+          </button>` : ''}
+        </div>
+        <div class="gallery-label-bar">
+          <span>Mónica Terrés Bienes Raíces</span>
+          <span>${p.location}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-wrap">
+      <nav class="breadcrumb">
+        <a href="monicaterresweb.html">Inicio</a>
+        <span class="sep">›</span>
+        <a href="compra.html">Compra</a>
+        <span class="sep">›</span>
+        <span class="bc-cur">${p.title}</span>
+      </nav>
+    </div>
+
+    <!-- MAIN -->
+    <div class="prop-layout">
+
+      <!-- LEFT -->
+      <div class="prop-left">
+
+        <!-- Header -->
+        <div class="prop-header">
+          <div class="prop-price">${p.priceFormatted} <span style="font-size:16px;font-weight:500;color:var(--grey);letter-spacing:0.05em;">MXN</span></div>
+          <div class="prop-title">${p.title}</div>
+          <div class="prop-loc">
+            <svg width="12" height="15" viewBox="0 0 12 15" fill="none"><path d="M6 0C2.69 0 0 2.69 0 6C0 10.5 6 15 6 15C6 15 12 10.5 12 6C12 2.69 9.31 0 6 0ZM6 8C4.9 8 4 7.1 4 6C4 4.9 4.9 4 6 4C7.1 4 8 4.9 8 6C8 7.1 7.1 8 6 8Z" fill="#737273"/></svg>
+            <span>${p.location}</span>
+          </div>
+          <div class="prop-badges">
+            ${tagsBadges}
+            ${deliveryBadge}
+            ${codeBadge}
+          </div>
+        </div>
+
+        <!-- Specs bar -->
+        <div class="specs-bar" style="grid-template-columns:${specsCols};">
+          <div class="sc"><span class="sc-icon">🛏</span><span class="sc-val">${p.beds}</span><span class="sc-lbl">Recámaras</span></div>
+          <div class="sc"><span class="sc-icon">🚿</span><span class="sc-val">${p.baths}</span><span class="sc-lbl">Baños</span></div>
+          <div class="sc"><span class="sc-icon">🚗</span><span class="sc-val">${p.parking}</span><span class="sc-lbl">Est.</span></div>
+          <div class="sc"><span class="sc-icon">📐</span><span class="sc-val">${p.area}m²</span><span class="sc-lbl">Construcción</span></div>
+          ${levelsSpec}
+          ${yearSpec}
+        </div>
+
+        <!-- Descripción -->
+        <div class="prop-section">
+          <h2 class="sec-heading">Descripción</h2>
+          <p class="desc-body">${p.description}</p>
+        </div>
+
+        <!-- Características -->
+        <div class="prop-section">
+          <h2 class="sec-heading">Características</h2>
+          <div class="features-grid">${featuresHTML}</div>
+        </div>
+
+        <!-- Amenidades -->
+        <div class="prop-section">
+          <h2 class="sec-heading">Amenidades</h2>
+          <div class="amen-wrap">${amenHTML}</div>
+        </div>
+
+        <!-- Ubicación + POIs -->
+        ${addressSection}
+
+      </div>
+
+      <!-- RIGHT: contact card -->
+      <div class="prop-right">
+        <div class="contact-card">
+          <div class="cc-head">
+            <div class="cc-price">${p.priceFormatted}</div>
+            <div class="cc-label">Precio de venta · MXN</div>
+          </div>
+          <div class="cc-body">
+            <div class="agent-row">
+              <div class="agent-ava">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="4" stroke="white" stroke-width="1.5" fill="none"/>
+                  <path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+              <div>
+                <div class="agent-name">Monica Terrés</div>
+                <div class="agent-role">Asesora inmobiliaria</div>
+                <div class="agent-co">Mónica Terrés Bienes Raíces</div>
+              </div>
+            </div>
+            <div class="cc-btns">
+              <a href="https://wa.me/525543687983?text=${waMsg}" class="cc-btn cc-btn-wa" target="_blank">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Contactar por WhatsApp
+              </a>
+              <a href="tel:+525543687983" class="cc-btn cc-btn-phone">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                +52 55 4368 7983
+              </a>
+              ${p.pdfUrl ? `<a href="${p.pdfUrl}" download class="cc-btn cc-btn-pdf">
+                <svg width="15" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar ficha técnica
+              </a>` : ''}
+              <a href="mailto:monicaterresbr@gmail.com?subject=Información sobre ${encodeURIComponent(p.title)}" class="cc-btn cc-btn-email">
+                <svg width="16" height="14" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
+                Enviar correo
+              </a>
+            </div>
+            <div class="cc-divider"></div>
+            ${ccDetails}
+            <p class="cc-note">Atención personalizada · Sin compromisos<br>monicaterresbr@gmail.com</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>

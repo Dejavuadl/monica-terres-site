@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propiedades en Venta – Mónica Terrés Bienes Raíces</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --dark:#2B292A;--dark2:#515051;--mid:#403E3F;--grey:#737273;--softgrey:#B5B5B5;--greyblue:#E6E6F2;--white:#FFFFFF;--radius:4px;--radius-md:8px;--radius-lg:12px; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Montserrat',sans-serif;background:#F4F4F4;color:var(--dark);min-height:100vh;}
+  nav{background:var(--dark);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:100px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--mid);;overflow:visible}
+  .logo-area{display:flex;align-items:center;gap:14px;text-decoration:none;}
+  .logo-svg{height:135px;width:auto;object-fit:contain;}
+  .logo-text{display:flex;flex-direction:column;line-height:1.1;}
+  .logo-text .brand-name{font-size:15px;font-weight:700;color:var(--white);letter-spacing:0.08em;text-transform:uppercase;}
+  .logo-text .brand-sub{font-size:9px;font-weight:400;color:var(--softgrey);letter-spacing:0.25em;text-transform:uppercase;}
+  .nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+  .nav-links a{color:var(--softgrey);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--white);}
+  .nav-cta{background:var(--white);color:var(--dark)!important;padding:8px 20px;border-radius:var(--radius);font-weight:700!important;}
+  .nav-cta:hover{background:var(--greyblue)!important;}
+
+  /* PAGE HEADER */
+  .page-header{background:var(--dark);padding:40px 48px;border-bottom:1px solid var(--mid);}
+  .page-header-inner{max-width:1200px;margin:0 auto;}
+  .page-header-label{font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--softgrey);margin-bottom:8px;}
+  .page-header h1{font-size:36px;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:12px;}
+  .page-header p{font-size:13px;color:var(--grey);max-width:480px;line-height:1.7;}
+
+  /* SEARCH BAR */
+  .search-wrap{background:var(--dark2);padding:20px 48px;}
+  .search-wrap-inner{max-width:1200px;margin:0 auto;}
+  .search-bar{background:var(--white);border-radius:var(--radius-md);padding:6px;display:flex;align-items:center;max-width:900px;box-shadow:0 2px 12px rgba(0,0,0,0.2);}
+  .search-field{display:flex;flex-direction:column;padding:8px 16px;flex:1;border-right:1px solid #E8E8E8;}
+  .search-field:last-of-type{border-right:none;}
+  .search-field label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark);margin-bottom:3px;}
+  .search-field select,.search-field input{border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--grey);background:transparent;cursor:pointer;width:100%;-webkit-appearance:none;}
+  .search-btn{background:var(--dark);color:var(--white);border:none;border-radius:var(--radius);padding:12px 20px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background 0.2s;display:flex;align-items:center;gap:6px;}
+  .search-btn:hover{background:var(--mid);}
+
+  /* MAIN */
+  .main{max-width:1200px;margin:0 auto;padding:32px 48px;}
+  .content-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+  .results-count{font-size:13px;font-weight:500;color:var(--grey);}
+  .results-count strong{color:var(--dark);font-weight:700;}
+  .sort-select{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:var(--dark);border:1px solid #D8D8D8;border-radius:var(--radius);padding:8px 14px;background:var(--white);cursor:pointer;outline:none;}
+  .content-layout{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:start;}
+
+  /* FILTERS */
+  .filters{background:var(--white);border-radius:var(--radius-lg);border:1px solid #E8E8E8;overflow:hidden;position:sticky;top:88px;}
+  .filter-header{background:var(--dark);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;}
+  .filter-header h3{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);}
+  .filter-clear{font-size:10px;font-weight:500;color:var(--softgrey);cursor:pointer;text-decoration:underline;letter-spacing:0.08em;}
+  .filter-section{padding:20px;border-bottom:1px solid #F0F0F0;}
+  .filter-section:last-child{border-bottom:none;}
+  .filter-section h4{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--dark2);margin-bottom:14px;}
+  .filter-chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;padding:6px 12px;border:1px solid #E0E0E0;border-radius:100px;background:var(--white);color:var(--dark2);cursor:pointer;transition:all 0.15s;letter-spacing:0.05em;}
+  .chip:hover{border-color:var(--dark);color:var(--dark);}
+  .chip.active{background:var(--dark);color:var(--white);border-color:var(--dark);}
+  .price-inputs{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .price-input{width:100%;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--dark);border:1px solid #E0E0E0;border-radius:var(--radius);padding:8px 10px;outline:none;transition:border-color 0.2s;}
+  .price-input:focus{border-color:var(--dark);}
+  .price-input::placeholder{color:var(--softgrey);}
+  .range-slider{width:100%;margin-top:12px;accent-color:var(--dark);}
+
+  /* GRID */
+  .prop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;}
+  .prop-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:1px solid #E8E8E8;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;}
+  .prop-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.10);}
+  .card-img{position:relative;height:200px;overflow:hidden;background:#D8D8D8;}
+  .card-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 100%);display:flex;align-items:center;justify-content:center;}
+  .card-img-placeholder svg{opacity:0.3;}
+  .card-badge{position:absolute;top:12px;left:12px;font-size:9px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}
+  .badge-venta{background:var(--dark);color:var(--white);}
+  .badge-nuevo{background:#1a1a1a;color:#fff;border:1px solid rgba(255,255,255,0.2);}
+  .card-fav{position:absolute;top:12px;right:12px;width:32px;height:32px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:14px;transition:background 0.2s;}
+  .card-fav:hover{background:var(--white);}
+  .card-fav.active{color:#c0392b;}
+  .card-body{padding:16px 18px 18px;}
+  .card-price{font-size:20px;font-weight:800;color:var(--dark);letter-spacing:-0.02em;margin-bottom:4px;}
+  .card-title{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:4px;line-height:1.3;}
+  .card-location{font-size:12px;font-weight:400;color:var(--grey);display:flex;align-items:center;gap:4px;margin-bottom:14px;}
+  .card-divider{height:1px;background:#F0F0F0;margin-bottom:12px;}
+  .card-specs{display:flex;gap:0;justify-content:space-between;}
+  .spec{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .spec-val{font-size:13px;font-weight:700;color:var(--dark);}
+  .spec-lbl{font-size:10px;font-weight:500;color:var(--softgrey);text-transform:uppercase;letter-spacing:0.08em;}
+  .spec-icon{font-size:15px;margin-bottom:1px;}
+  .card-tags{margin-bottom:10px;}
+  .card-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px;border-radius:100px;background:var(--greyblue);color:var(--dark2);margin-right:4px;}
+
+  .empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;}
+  .empty-state h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--dark);}
+  .empty-state p{font-size:13px;color:var(--grey);}
+
+  .pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:48px;}
+  .page-btn{width:36px;height:36px;border:1px solid #E0E0E0;border-radius:var(--radius);background:var(--white);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;color:var(--dark2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+  .page-btn:hover:not(:disabled){border-color:var(--dark);color:var(--dark);}
+  .page-btn.active{background:var(--dark);color:var(--white);border-color:var(--dark);}
+  .page-btn:disabled{opacity:0.4;cursor:not-allowed;}
+
+  footer{background:var(--dark);margin-top:80px;padding:56px 48px 32px;}
+  .footer-inner{max-width:1200px;margin:0 auto;}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  .footer-brand .brand-name{font-size:16px;font-weight:800;color:var(--white);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+  .footer-brand .brand-sub{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;}
+  .footer-brand p{font-size:12px;font-weight:400;color:var(--grey);line-height:1.7;max-width:260px;}
+  .footer-col h4{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--white);margin-bottom:16px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .footer-col a{font-size:12px;font-weight:400;color:var(--grey);text-decoration:none;transition:color 0.2s;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;}
+  .footer-bottom p{font-size:11px;color:var(--grey);letter-spacing:0.05em;}
+  .social-links{display:flex;gap:12px;}
+  .social-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:13px;text-decoration:none;transition:all 0.2s;}
+  .social-btn:hover{border-color:var(--white);color:var(--white);}
+  .wa-btn{position:fixed;bottom:28px;right:28px;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.2);cursor:pointer;z-index:200;transition:transform 0.2s;text-decoration:none;}
+  .wa-btn:hover{transform:scale(1.08);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo-area" href="monicaterresweb.html">
+    <img class="logo-svg" src="logo vertical MTBR.png" alt="Mónica Terrés Bienes Raíces">
+  </a>
+  <ul class="nav-links">
+    <li><a href="monicaterresweb.html">Inicio</a></li>
+    <li><a href="venta.html" class="active">En Venta</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="tel:+525543687983" class="nav-cta">Llámanos</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-header-label">Ciudad de México · Propiedades en Venta</p>
+    <h1>Todas las Propiedades</h1>
+    <p>Explora nuestra cartera completa de inmuebles residenciales y comerciales disponibles en las mejores colonias de la CDMX.</p>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-wrap-inner">
+    <div class="search-bar">
+      <div class="search-field">
+        <label>Tipo de inmueble</label>
+        <select id="searchTipo">
+          <option value="todos">Todos</option>
+          <option value="casa">Casa</option>
+          <option value="depto">Departamento</option>
+          <option value="comercial">Local comercial</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Zona</label>
+        <select id="searchZona">
+          <option value="">Todas las zonas</option>
+          <option value="polanco">Polanco</option>
+          <option value="roma">Roma</option>
+          <option value="condesa">Condesa</option>
+          <option value="coyoacan">Coyoacán</option>
+          <option value="lomas">Lomas</option>
+          <option value="santafe">Santa Fe</option>
+          <option value="pedregal">Pedregal</option>
+          <option value="narvarte">Narvarte</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Precio máx.</label>
+        <select id="searchPrecio">
+          <option value="0">Sin límite</option>
+          <option value="5000000">$5,000,000</option>
+          <option value="10000000">$10,000,000</option>
+          <option value="20000000">$20,000,000</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Recámaras mín.</label>
+        <select id="searchBeds">
+          <option value="0">Cualquiera</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+        </select>
+      </div>
+      <button class="search-btn" id="searchBtn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="white" stroke-width="1.5"/><path d="M9 9L13 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="content-header">
+    <p class="results-count">Mostrando <strong id="countLabel">12 propiedades</strong> en Ciudad de México</p>
+    <select class="sort-select" id="sortSelect">
+      <option value="recent">Más recientes</option>
+      <option value="price-asc">Precio: menor a mayor</option>
+      <option value="price-desc">Precio: mayor a menor</option>
+      <option value="area">Mayor superficie</option>
+    </select>
+  </div>
+
+  <div class="content-layout">
+    <aside class="filters">
+      <div class="filter-header">
+        <h3>Filtros</h3>
+        <span class="filter-clear" id="clearFilters">Limpiar todo</span>
+      </div>
+      <div class="filter-section">
+        <h4>Tipo de inmueble</h4>
+        <div class="filter-chips" data-filter="type" data-multi="false">
+          <button class="chip active" data-value="todos">Todos</button>
+          <button class="chip" data-value="casa">Casa</button>
+          <button class="chip" data-value="depto">Depto.</button>
+          <button class="chip" data-value="comercial">Comercial</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Rango de precio</h4>
+        <div class="price-inputs">
+          <input class="price-input" id="minPrice" type="text" placeholder="Mín.">
+          <input class="price-input" id="maxPrice" type="text" placeholder="Máx.">
+        </div>
+        <input type="range" class="range-slider" id="rangeSlider" min="0" max="50000000" step="500000" value="50000000">
+      </div>
+      <div class="filter-section">
+        <h4>Recámaras</h4>
+        <div class="filter-chips" data-filter="beds" data-multi="false">
+          <button class="chip" data-value="1">1</button>
+          <button class="chip" data-value="2">2</button>
+          <button class="chip" data-value="3">3</button>
+          <button class="chip" data-value="4">4+</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Baños</h4>
+        <div class="filter-chips" data-filter="baths" data-multi="false">
+          <button class="chip" data-value="1">1</button>
+          <button class="chip" data-value="2">2</button>
+          <button class="chip" data-value="3">3+</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Estacionamiento</h4>
+        <div class="filter-chips" data-filter="parking" data-multi="false">
+          <button class="chip" data-value="1">1</button>
+          <button class="chip" data-value="2">2</button>
+          <button class="chip" data-value="3">3+</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Zonas</h4>
+        <div class="filter-chips" data-filter="zones" data-multi="true">
+          <button class="chip" data-value="polanco">Polanco</button>
+          <button class="chip" data-value="roma">Roma</button>
+          <button class="chip" data-value="condesa">Condesa</button>
+          <button class="chip" data-value="coyoacan">Coyoacán</button>
+          <button class="chip" data-value="lomas">Lomas</button>
+          <button class="chip" data-value="santafe">Santa Fe</button>
+          <button class="chip" data-value="pedregal">Pedregal</button>
+          <button class="chip" data-value="narvarte">Narvarte</button>
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      <div class="prop-grid" id="propGrid">
+
+        <div class="prop-card" data-type="casa" data-zone="polanco" data-price="8500000" data-beds="4" data-baths="3.5" data-parking="2" data-area="320" data-index="1">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><path d="M30 5L55 25V55H5V25Z" stroke="white" stroke-width="2" fill="none"/><rect x="22" y="37" width="16" height="18" stroke="white" stroke-width="1.5" fill="none"/><rect x="10" y="33" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/><rect x="40" y="33" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$8,500,000</div><div class="card-title">Casa residencial en Polanco</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Polanco, Miguel Hidalgo</div><div class="card-tags"><span class="card-tag">Casa</span><span class="card-tag">Jardín</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">4</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">3.5</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">320m²</span><span class="spec-lbl">Terreno</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="depto" data-zone="roma" data-price="4200000" data-beds="2" data-baths="2" data-parking="1" data-area="95" data-index="2">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="5" y="15" width="50" height="40" stroke="white" stroke-width="2" fill="none"/><rect x="5" y="5" width="50" height="10" stroke="white" stroke-width="1.5" fill="none"/><rect x="20" y="35" width="12" height="20" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$4,200,000</div><div class="card-title">Departamento moderno en Roma Norte</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Roma Norte, Cuauhtémoc</div><div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Terraza</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">95m²</span><span class="spec-lbl">Const.</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="casa" data-zone="pedregal" data-price="15000000" data-beds="5" data-baths="4.5" data-parking="3" data-area="650" data-index="3">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><path d="M30 5L55 25V55H5V25Z" stroke="white" stroke-width="2" fill="none"/><rect x="22" y="37" width="16" height="18" stroke="white" stroke-width="1.5" fill="none"/><circle cx="45" cy="12" r="4" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-nuevo">Nuevo</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$15,000,000</div><div class="card-title">Casa con alberca en Pedregal</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Pedregal de San Ángel, Coyoacán</div><div class="card-tags"><span class="card-tag">Casa</span><span class="card-tag">Alberca</span><span class="card-tag">Jardín</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">5</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">4.5</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">3</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">650m²</span><span class="spec-lbl">Terreno</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="depto" data-zone="lomas" data-price="6800000" data-beds="3" data-baths="2.5" data-parking="2" data-area="180" data-index="4">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="5" y="10" width="50" height="45" stroke="white" stroke-width="2" fill="none"/><rect x="5" y="10" width="50" height="16" stroke="white" stroke-width="1" fill="none"/><rect x="15" y="30" width="12" height="25" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$6,800,000</div><div class="card-title">Departamento de lujo en Lomas</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Lomas de Chapultepec, M. Hidalgo</div><div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Gym</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">3</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2.5</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">180m²</span><span class="spec-lbl">Const.</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="casa" data-zone="condesa" data-price="4500000" data-beds="3" data-baths="2" data-parking="1" data-area="220" data-index="5">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><path d="M30 5L55 25V55H5V25Z" stroke="white" stroke-width="2" fill="none"/><rect x="22" y="37" width="16" height="18" stroke="white" stroke-width="1.5" fill="none"/><rect x="12" y="30" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$4,500,000</div><div class="card-title">Casa en La Condesa</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> La Condesa, Cuauhtémoc</div><div class="card-tags"><span class="card-tag">Casa</span><span class="card-tag">Patio</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">3</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">220m²</span><span class="spec-lbl">Terreno</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="depto" data-zone="narvarte" data-price="3500000" data-beds="2" data-baths="1.5" data-parking="1" data-area="85" data-index="6">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="5" y="20" width="50" height="35" stroke="white" stroke-width="2" fill="none"/><rect x="5" y="10" width="50" height="10" stroke="white" stroke-width="1.5" fill="none"/><rect x="20" y="38" width="12" height="17" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$3,500,000</div><div class="card-title">Departamento en Narvarte Poniente</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Narvarte Poniente, Benito Juárez</div><div class="card-tags"><span class="card-tag">Depto.</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">1.5</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">85m²</span><span class="spec-lbl">Const.</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="casa" data-zone="lomas" data-price="22000000" data-beds="6" data-baths="6" data-parking="4" data-area="900" data-index="7">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><path d="M30 5L55 25V55H5V25Z" stroke="white" stroke-width="2" fill="none"/><rect x="22" y="35" width="16" height="20" stroke="white" stroke-width="1.5" fill="none"/><rect x="8" y="32" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/><rect x="42" y="32" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/><circle cx="48" cy="12" r="3" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-nuevo">Nuevo</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$22,000,000</div><div class="card-title">Residencia en Las Lomas</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Lomas de Reforma, Miguel Hidalgo</div><div class="card-tags"><span class="card-tag">Residencia</span><span class="card-tag">Alberca</span><span class="card-tag">Coto</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">6</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">6</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">4</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">900m²</span><span class="spec-lbl">Terreno</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="depto" data-zone="santafe" data-price="5900000" data-beds="3" data-baths="2" data-parking="2" data-area="140" data-index="8">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="10" y="15" width="40" height="40" stroke="white" stroke-width="2" fill="none"/><rect x="10" y="5" width="40" height="10" stroke="white" stroke-width="1.5" fill="none"/><rect x="22" y="35" width="12" height="20" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$5,900,000</div><div class="card-title">Departamento con roof en Santa Fe</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Santa Fe, Álvaro Obregón</div><div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Roof</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">3</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">140m²</span><span class="spec-lbl">Const.</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="casa" data-zone="coyoacan" data-price="9800000" data-beds="4" data-baths="3" data-parking="2" data-area="400" data-index="9">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><path d="M10 55 L10 25 L30 8 L50 25 L50 55 Z" stroke="white" stroke-width="2" fill="none"/><rect x="22" y="38" width="16" height="17" stroke="white" stroke-width="1.5" fill="none"/><rect x="12" y="32" width="10" height="8" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$9,800,000</div><div class="card-title">Casa en Coyoacán Centro</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Coyoacán Centro, Coyoacán</div><div class="card-tags"><span class="card-tag">Casa</span><span class="card-tag">Estudio</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">4</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">3</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">400m²</span><span class="spec-lbl">Terreno</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="casa" data-zone="lomas" data-price="11200000" data-beds="5" data-baths="4" data-parking="3" data-area="500" data-index="10">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="5" y="25" width="50" height="30" stroke="white" stroke-width="2" fill="none"/><path d="M5 25 L30 8 L55 25" stroke="white" stroke-width="2"/><rect x="22" y="38" width="16" height="17" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$11,200,000</div><div class="card-title">Casa en Bosques de las Lomas</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Bosques de las Lomas, Cuajimalpa</div><div class="card-tags"><span class="card-tag">Casa</span><span class="card-tag">Bosque</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">5</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">4</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">3</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">500m²</span><span class="spec-lbl">Terreno</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="comercial" data-zone="narvarte" data-price="3200000" data-beds="0" data-baths="1" data-parking="2" data-area="75" data-index="11">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><rect x="10" y="15" width="40" height="40" stroke="white" stroke-width="2" fill="none"/><line x1="10" y1="30" x2="50" y2="30" stroke="white" stroke-width="1"/><line x1="30" y1="15" x2="30" y2="55" stroke="white" stroke-width="1"/></svg></div><span class="card-badge badge-venta">En venta</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$3,200,000</div><div class="card-title">Local comercial en Insurgentes</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Insurgentes Sur, Benito Juárez</div><div class="card-tags"><span class="card-tag">Comercial</span><span class="card-tag">Planta baja</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🏢</span><span class="spec-val">1</span><span class="spec-lbl">Local</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">1</span><span class="spec-lbl">Baño</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">75m²</span><span class="spec-lbl">Const.</span></div></div></div>
+        </div>
+
+        <div class="prop-card" data-type="casa" data-zone="delvalle" data-price="7400000" data-beds="3" data-baths="2.5" data-parking="2" data-area="210" data-index="12">
+          <div class="card-img"><div class="card-img-placeholder"><svg width="60" height="60" viewBox="0 0 60 60" fill="white"><path d="M30 5L55 25V55H5V25Z" stroke="white" stroke-width="2" fill="none"/><rect x="22" y="35" width="16" height="20" stroke="white" stroke-width="1.5" fill="none"/><rect x="10" y="30" width="8" height="6" stroke="white" stroke-width="1.5" fill="none"/><rect x="42" y="30" width="8" height="6" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="card-badge badge-nuevo">Nuevo</span><button class="card-fav" onclick="toggleFav(this)">♡</button></div>
+          <div class="card-body"><div class="card-price">$7,400,000</div><div class="card-title">Casa en Del Valle Norte</div><div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Del Valle Norte, Benito Juárez</div><div class="card-tags"><span class="card-tag">Casa</span><span class="card-tag">Remodelada</span></div><div class="card-divider"></div><div class="card-specs"><div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">3</span><span class="spec-lbl">Rec.</span></div><div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2.5</span><span class="spec-lbl">Baños</span></div><div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div><div class="spec"><span class="spec-icon">📐</span><span class="spec-val">210m²</span><span class="spec-lbl">Terreno</span></div></div></div>
+        </div>
+
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+</main>
+
+<footer id="contacto">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="brand-name">Mónica Terrés</div><div class="brand-sub">— Bienes Raíces —</div><p>Especialistas en compra y venta de propiedades residenciales y comerciales en Ciudad de México.</p></div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="venta.html">Compra de propiedades</a></li><li><a href="venta.html">Venta de inmuebles</a></li><li><a href="venta.html">Inmuebles comerciales</a></li><li><a href="nosotros.html">Asesoría de inversión</a></li></ul></div>
+      <div class="footer-col"><h4>Zonas</h4><ul><li><a href="#">Polanco</a></li><li><a href="#">Lomas de Chapultepec</a></li><li><a href="#">Roma &amp; Condesa</a></li><li><a href="#">Coyoacán</a></li><li><a href="#">Santa Fe</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+525543687983">+52 55 4368 7983</a></li><li><a href="mailto:monicaterresbr@gmail.com">monicaterresbr@gmail.com</a></li><li><a href="nosotros.html">Quiénes somos</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Mónica Terrés Bienes Raíces · Ciudad de México · Todos los derechos reservados</p><div class="social-links"><a href="https://www.facebook.com/share/1FixHdbSAR/" class="social-btn" target="_blank" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a><a href="https://www.instagram.com/monicaterres_br" class="social-btn" target="_blank" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://wa.me/525543687983" class="social-btn" target="_blank" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5543687983" class="wa-btn" title="WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+
+<script>
+  const CARDS_PER_PAGE = 6;
+  let currentPage = 1;
+  let activeFilters = { type:'todos', zones:[], beds:0, baths:0, parking:0, minPrice:0, maxPrice:100000000 };
+
+  function getAllCards() { return Array.from(document.querySelectorAll('.prop-card')); }
+
+  function getVisibleCards() {
+    return getAllCards().filter(c => {
+      const p = +c.dataset.price;
+      if (activeFilters.type !== 'todos' && c.dataset.type !== activeFilters.type) return false;
+      if (activeFilters.zones.length > 0 && !activeFilters.zones.includes(c.dataset.zone)) return false;
+      if (p < activeFilters.minPrice) return false;
+      if (activeFilters.maxPrice > 0 && p > activeFilters.maxPrice) return false;
+      if (activeFilters.beds > 0 && +c.dataset.beds < activeFilters.beds) return false;
+      if (activeFilters.baths > 0 && +c.dataset.baths < activeFilters.baths) return false;
+      if (activeFilters.parking > 0 && +c.dataset.parking < activeFilters.parking) return false;
+      return true;
+    });
+  }
+
+  function render() {
+    const all = getAllCards(), visible = getVisibleCards();
+    const total = Math.max(1, Math.ceil(visible.length / CARDS_PER_PAGE));
+    if (currentPage > total) currentPage = 1;
+    all.forEach(c => c.style.display = 'none');
+    visible.slice((currentPage-1)*CARDS_PER_PAGE, currentPage*CARDS_PER_PAGE).forEach(c => c.style.display = '');
+    const grid = document.getElementById('propGrid');
+    const ex = grid.querySelector('.empty-state'); if (ex) ex.remove();
+    if (!visible.length) { const d = document.createElement('div'); d.className='empty-state'; d.innerHTML='<h3>Sin resultados</h3><p>Intenta con otros filtros o <a href="tel:+525543687983" style="color:var(--dark);font-weight:700">llámanos</a>.</p>'; grid.appendChild(d); }
+    document.getElementById('countLabel').textContent = `${visible.length} propiedades`;
+    renderPagination(total);
+  }
+
+  function renderPagination(total) {
+    const el = document.getElementById('pagination');
+    if (total <= 1) { el.innerHTML=''; return; }
+    let h = `<button class="page-btn" id="prevBtn" ${currentPage===1?'disabled':''}>‹</button>`;
+    for (let i=1;i<=total;i++) h+=`<button class="page-btn ${i===currentPage?'active':''}" data-page="${i}">${i}</button>`;
+    h += `<button class="page-btn" id="nextBtn" ${currentPage===total?'disabled':''}>›</button>`;
+    el.innerHTML=h;
+    el.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>{currentPage=+b.dataset.page;render();window.scrollTo({top:300,behavior:'smooth'});}));
+    document.getElementById('prevBtn').addEventListener('click',()=>{if(currentPage>1){currentPage--;render();window.scrollTo({top:300,behavior:'smooth'});}});
+    document.getElementById('nextBtn').addEventListener('click',()=>{if(currentPage<total){currentPage++;render();window.scrollTo({top:300,behavior:'smooth'});}});
+  }
+
+  function updateFilters() {
+    const t=document.querySelector('[data-filter="type"] .chip.active'); activeFilters.type=t?t.dataset.value:'todos';
+    activeFilters.zones=Array.from(document.querySelectorAll('[data-filter="zones"] .chip.active')).map(c=>c.dataset.value);
+    const b=document.querySelector('[data-filter="beds"] .chip.active'); activeFilters.beds=b?+b.dataset.value:0;
+    const ba=document.querySelector('[data-filter="baths"] .chip.active'); activeFilters.baths=ba?+ba.dataset.value:0;
+    const pk=document.querySelector('[data-filter="parking"] .chip.active'); activeFilters.parking=pk?+pk.dataset.value:0;
+    const mn=document.getElementById('minPrice').value.replace(/[^\d]/g,'');
+    const mx=document.getElementById('maxPrice').value.replace(/[^\d]/g,'');
+    activeFilters.minPrice=mn?+mn:0; activeFilters.maxPrice=mx?+mx:100000000;
+    currentPage=1; render();
+  }
+
+  document.querySelectorAll('.filter-chips').forEach(group=>{
+    const multi=group.dataset.multi==='true';
+    group.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click',()=>{
+        if(multi){chip.classList.toggle('active');}else{group.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');}
+        updateFilters();
+      });
+    });
+  });
+
+  document.getElementById('minPrice').addEventListener('input',updateFilters);
+  document.getElementById('maxPrice').addEventListener('input',updateFilters);
+  document.getElementById('rangeSlider').addEventListener('input',e=>{
+    const v=+e.target.value;
+    document.getElementById('maxPrice').value=v>=50000000?'':'$'+v.toLocaleString('es-MX');
+    updateFilters();
+  });
+  document.getElementById('clearFilters').addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    document.querySelector('[data-filter="type"] .chip[data-value="todos"]').classList.add('active');
+    document.getElementById('minPrice').value=''; document.getElementById('maxPrice').value='';
+    document.getElementById('rangeSlider').value=50000000;
+    activeFilters={type:'todos',zones:[],beds:0,baths:0,parking:0,minPrice:0,maxPrice:100000000};
+    currentPage=1; render();
+  });
+  document.getElementById('sortSelect').addEventListener('change',e=>{
+    const v=e.target.value, grid=document.getElementById('propGrid'), cards=getAllCards();
+    cards.sort((a,b)=>v==='price-asc'?+a.dataset.price-+b.dataset.price:v==='price-desc'?+b.dataset.price-+a.dataset.price:v==='area'?+b.dataset.area-+a.dataset.area:+a.dataset.index-+b.dataset.index);
+    cards.forEach(c=>grid.appendChild(c)); currentPage=1; render();
+  });
+  document.getElementById('searchBtn').addEventListener('click',()=>{
+    const tipo=document.getElementById('searchTipo').value;
+    const zona=document.getElementById('searchZona').value;
+    const precio=document.getElementById('searchPrecio').value;
+    const beds=document.getElementById('searchBeds').value;
+    if(tipo!=='todos'){document.querySelectorAll('[data-filter="type"] .chip').forEach(c=>c.classList.remove('active'));const ch=document.querySelector(`[data-filter="type"] .chip[data-value="${tipo}"]`);if(ch)ch.classList.add('active');}
+    if(zona){const ch=document.querySelector(`[data-filter="zones"] .chip[data-value="${zona}"]`);if(ch)ch.classList.add('active');}
+    if(precio!=='0'){document.getElementById('maxPrice').value='$'+parseInt(precio).toLocaleString('es-MX');}
+    if(beds!=='0'){document.querySelectorAll('[data-filter="beds"] .chip').forEach(c=>c.classList.remove('active'));const ch=document.querySelector(`[data-filter="beds"] .chip[data-value="${beds}"]`);if(ch)ch.classList.add('active');}
+    updateFilters();
+  });
+  function toggleFav(btn){btn.classList.toggle('active');btn.textContent=btn.classList.contains('active')?'♥':'♡';}
+  render();
+</script>
+</body>
+</html>

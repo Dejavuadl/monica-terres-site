@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vende tu propiedad – Mónica Terrés Bienes Raíces</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--dark:#2B292A;--dark2:#515051;--mid:#403E3F;--grey:#737273;--softgrey:#B5B5B5;--greyblue:#E6E6F2;--white:#FFFFFF;--radius:4px;--radius-md:8px;--radius-lg:12px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Montserrat',sans-serif;background:#F4F4F4;color:var(--dark);min-height:100vh;}
+
+  /* NAV */
+  nav{background:var(--dark);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:100px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--mid);;overflow:visible}
+  .logo-area{display:flex;align-items:center;gap:14px;text-decoration:none;}
+  .logo-svg{height:135px;width:auto;object-fit:contain;}
+  .logo-text{display:flex;flex-direction:column;line-height:1.1;}
+  .logo-text .brand-name{font-size:15px;font-weight:700;color:var(--white);letter-spacing:0.08em;text-transform:uppercase;}
+  .logo-text .brand-sub{font-size:9px;font-weight:400;color:var(--softgrey);letter-spacing:0.25em;text-transform:uppercase;}
+  .nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+  .nav-links a{color:var(--softgrey);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--white);}
+  .nav-cta{background:var(--white);color:var(--dark)!important;padding:8px 20px;border-radius:var(--radius);font-weight:700!important;}
+  .nav-cta:hover{background:var(--greyblue)!important;}
+  .nav-fav{display:flex;align-items:center;gap:3px;}
+  .fav-count{font-size:10px;font-weight:800;background:var(--white);color:var(--dark);border-radius:100px;padding:1px 5px;display:none;}
+
+  /* HERO */
+  .hero{background:var(--dark);padding:80px 48px 72px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(255,255,255,0.05);}
+  .hero::after{content:'';position:absolute;bottom:-80px;right:100px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,0.04);}
+  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+  .hero-label{font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--softgrey);margin-bottom:16px;}
+  .hero h1{font-size:56px;font-weight:800;color:var(--white);line-height:1.0;letter-spacing:-0.02em;max-width:700px;margin-bottom:24px;}
+  .hero h1 span{color:var(--softgrey);font-weight:300;}
+  .hero-desc{font-size:15px;font-weight:400;color:var(--grey);max-width:540px;line-height:1.8;margin-bottom:40px;}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{background:var(--white);color:var(--dark);padding:18px 36px;border-radius:var(--radius);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;display:inline-flex;align-items:center;gap:10px;}
+  .btn-primary:hover{background:var(--greyblue);}
+  .btn-secondary{background:transparent;color:var(--white);padding:18px 36px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.3);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:10px;}
+  .btn-secondary:hover{border-color:var(--white);background:rgba(255,255,255,0.05);}
+
+  /* STATS STRIP */
+  .stats-strip{background:var(--dark2);padding:0 48px;}
+  .stats-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;}
+  .stat-item{padding:18px 40px 18px 0;margin-right:40px;border-right:1px solid rgba(255,255,255,0.1);display:flex;align-items:baseline;gap:8px;}
+  .stat-item:last-child{border-right:none;}
+  .stat-num{font-size:22px;font-weight:800;color:var(--white);letter-spacing:-0.02em;}
+  .stat-label{font-size:11px;font-weight:500;color:var(--softgrey);text-transform:uppercase;letter-spacing:0.1em;}
+
+  /* CONTENT */
+  .content{max-width:1200px;margin:0 auto;padding:72px 48px;}
+
+  /* SECTION HEADER */
+  .section-label{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
+  .section-title{font-size:32px;font-weight:800;color:var(--dark);letter-spacing:-0.02em;margin-bottom:16px;}
+  .section-text{font-size:14px;color:var(--grey);line-height:1.8;max-width:640px;}
+
+  /* BENEFITS GRID */
+  .benefits-section{margin-bottom:80px;}
+  .benefits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;margin-top:40px;}
+  .benefit-card{background:var(--white);border-radius:var(--radius-lg);padding:32px;border:1px solid #E8E8E8;transition:transform 0.2s,box-shadow 0.2s;}
+  .benefit-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.07);}
+  .benefit-icon{font-size:36px;margin-bottom:18px;}
+  .benefit-title{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:10px;letter-spacing:0.01em;}
+  .benefit-text{font-size:13px;color:var(--grey);line-height:1.7;}
+
+  /* PROCESS SECTION */
+  .process-section{background:var(--white);border-radius:var(--radius-lg);border:1px solid #E8E8E8;padding:56px 48px;margin-bottom:80px;}
+  .steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:32px;margin-top:40px;position:relative;}
+  .step{position:relative;padding-top:16px;}
+  .step-num{font-size:11px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--softgrey);margin-bottom:12px;}
+  .step-title{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+  .step-text{font-size:12px;color:var(--grey);line-height:1.7;}
+  .step-line{position:absolute;top:0;left:0;right:0;height:3px;background:var(--dark);}
+
+  /* VALUATION CTA */
+  .valuation-cta{background:var(--dark);border-radius:var(--radius-lg);padding:64px 48px;text-align:center;margin-bottom:80px;}
+  .valuation-cta h2{font-size:40px;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:16px;line-height:1.1;}
+  .valuation-cta p{font-size:15px;color:var(--grey);line-height:1.7;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;}
+  .valuation-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;background:rgba(255,255,255,0.12);color:var(--softgrey);border-radius:100px;padding:6px 18px;margin-bottom:24px;}
+
+  /* TESTIMONIAL STRIP */
+  .testimonial-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:80px;}
+  .testimonial{background:var(--white);border-radius:var(--radius-lg);border:1px solid #E8E8E8;padding:28px;}
+  .testimonial-text{font-size:13px;color:var(--dark2);line-height:1.7;margin-bottom:16px;font-style:italic;}
+  .testimonial-author{font-size:11px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;}
+  .testimonial-zone{font-size:11px;color:var(--grey);margin-top:2px;}
+
+  /* FOOTER */
+  footer{background:var(--dark);margin-top:0;padding:56px 48px 32px;}
+  .footer-inner{max-width:1200px;margin:0 auto;}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  .footer-brand .brand-name{font-size:16px;font-weight:800;color:var(--white);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+  .footer-brand .brand-sub{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;}
+  .footer-brand p{font-size:12px;font-weight:400;color:var(--grey);line-height:1.7;max-width:260px;}
+  .footer-col h4{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--white);margin-bottom:16px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .footer-col a{font-size:12px;font-weight:400;color:var(--grey);text-decoration:none;transition:color 0.2s;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;}
+  .footer-bottom p{font-size:11px;color:var(--grey);letter-spacing:0.05em;}
+  .social-links{display:flex;gap:12px;}
+  .social-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:13px;text-decoration:none;transition:all 0.2s;}
+  .social-btn:hover{border-color:var(--white);color:var(--white);}
+  .wa-btn{position:fixed;bottom:28px;right:28px;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.2);cursor:pointer;z-index:200;transition:transform 0.2s;text-decoration:none;}
+  .wa-btn:hover{transform:scale(1.08);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo-area" href="monicaterresweb.html">
+    <img class="logo-svg" src="logo vertical MTBR.png" alt="Mónica Terrés Bienes Raíces">
+  </a>
+  <ul class="nav-links">
+    <li><a href="monicaterresweb.html">Inicio</a></li>
+    <li><a href="compra.html">Compra</a></li>
+    <li><a href="vende.html" class="active">Vende</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="favoritos.html" class="nav-fav" id="navFavBtn">♡ <span class="fav-count" id="favCount"></span></a></li>
+    <li><a href="tel:+525543687983" class="nav-cta">Llámanos</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-label">Vende con nosotros · Ciudad de México</p>
+    <h1>Vende tu propiedad<br><span>al mejor precio</span></h1>
+    <p class="hero-desc">Te acompañamos en cada paso del proceso: valuación, estrategia de precio, difusión y cierre. Con Mónica Terrés, tu propiedad se vende rápido y al precio justo.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/525543687983?text=Hola%20M%C3%B3nica%2C%20quiero%20una%20valuaci%C3%B3n%20gratuita%20de%20mi%20propiedad." class="btn-primary" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.51 15.58 3.38 17.06L2 22L7.11 20.65C8.54 21.48 10.21 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Valuación gratuita
+      </a>
+      <a href="tel:+525543687983" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Llamar ahora
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">+10</span><span class="stat-label">Años de experiencia</span></div>
+    <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Asesoría personalizada</span></div>
+    <div class="stat-item"><span class="stat-num">0</span><span class="stat-label">Costo de valuación</span></div>
+    <div class="stat-item"><span class="stat-num">CDMX</span><span class="stat-label">Especialidad</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- BENEFITS -->
+  <div class="benefits-section">
+    <p class="section-label">Por qué elegirnos</p>
+    <h2 class="section-title">Ventajas de vender con Mónica Terrés</h2>
+    <p class="section-text">Somos expertos en el mercado inmobiliario de la Ciudad de México. Conocemos cada colonia, cada tendencia y cada oportunidad para maximizar el valor de tu propiedad.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">📊</div>
+        <div class="benefit-title">Valuación gratuita y precisa</div>
+        <div class="benefit-text">Analizamos el mercado actual, propiedades comparables y tendencias de la zona para determinar el precio óptimo de venta. Sin costo ni compromiso.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎯</div>
+        <div class="benefit-title">Estrategia de precio inteligente</div>
+        <div class="benefit-text">Un precio bien calculado vende más rápido y al mejor valor. Te ayudamos a posicionar tu inmueble para atraer compradores serios.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📢</div>
+        <div class="benefit-title">Difusión amplia y efectiva</div>
+        <div class="benefit-text">Tu propiedad llega a compradores reales a través de nuestra red de contactos, portales especializados y redes sociales.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-title">Acompañamiento completo</div>
+        <div class="benefit-text">Desde la primera visita hasta la firma ante notario, te acompañamos en cada paso con asesoría jurídica y negociación de primera.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚖️</div>
+        <div class="benefit-title">Seguridad jurídica total</div>
+        <div class="benefit-text">Revisamos la documentación de tu inmueble y aseguramos que la operación sea 100% legal y transparente para ambas partes.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🏆</div>
+        <div class="benefit-title">Resultados comprobados</div>
+        <div class="benefit-text">Más de una década cerrando ventas exitosas en las colonias más demandadas de CDMX. Tu confianza es nuestro mayor activo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="process-section">
+    <p class="section-label">Cómo funciona</p>
+    <h2 class="section-title">El proceso de venta</h2>
+    <p class="section-text">Un proceso transparente, sin sorpresas. De la valuación al contrato en 5 pasos.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">Paso 01</div>
+        <div class="step-title">Valuación gratuita</div>
+        <div class="step-text">Visitamos tu propiedad, analizamos el mercado y te presentamos un precio de venta competitivo sin ningún costo.</div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">Paso 02</div>
+        <div class="step-title">Estrategia y contrato</div>
+        <div class="step-text">Firmamos un contrato de exclusividad y definimos la estrategia de difusión: portales, redes y nuestra base de compradores activos.</div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">Paso 03</div>
+        <div class="step-title">Difusión y visitas</div>
+        <div class="step-text">Publicamos tu propiedad y coordinamos visitas con compradores calificados. Tú solo tienes que estar disponible cuando toque.</div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">Paso 04</div>
+        <div class="step-title">Negociación y oferta</div>
+        <div class="step-text">Negociamos en tu nombre para obtener el mejor precio y las mejores condiciones. Tú decides si aceptas o contraofertas.</div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-num">Paso 05</div>
+        <div class="step-title">Cierre ante notario</div>
+        <div class="step-text">Acompañamos la firma de la escritura y la entrega de la propiedad. Tu dinero, seguro y a tiempo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUATION CTA -->
+  <div class="valuation-cta">
+    <div class="valuation-badge">Sin costo · Sin compromiso</div>
+    <h2>¿Cuánto vale<br>tu propiedad?</h2>
+    <p>Obtén una valuación gratuita y descubre el precio justo de mercado para tu inmueble. Solo escríbenos por WhatsApp y agendamos una visita.</p>
+    <a href="https://wa.me/525543687983?text=Hola%20M%C3%B3nica%2C%20quiero%20una%20valuaci%C3%B3n%20gratuita%20de%20mi%20propiedad." class="btn-primary" target="_blank" style="margin:0 auto;display:inline-flex;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.51 15.58 3.38 17.06L2 22L7.11 20.65C8.54 21.48 10.21 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Quiero mi valuación gratuita
+    </a>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonial-strip">
+    <div class="testimonial">
+      <div class="testimonial-text">"Mónica vendió nuestra casa en Polanco en menos de un mes y al precio que pedíamos. El proceso fue muy tranquilo, sin sorpresas."</div>
+      <div class="testimonial-author">Familia Rodríguez</div>
+      <div class="testimonial-zone">Polanco, Miguel Hidalgo</div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-text">"Excelente asesoría desde la valuación hasta el cierre. Muy profesional y honesta en todo momento. La recomendamos sin duda."</div>
+      <div class="testimonial-author">Laura M.</div>
+      <div class="testimonial-zone">Condesa, Cuauhtémoc</div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-text">"Vendimos nuestro departamento en Lomas con un precio superior al que esperábamos. La estrategia de Mónica fue clave para lograrlo."</div>
+      <div class="testimonial-author">Carlos y Ana P.</div>
+      <div class="testimonial-zone">Lomas de Chapultepec</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Mónica Terrés</div>
+        <div class="brand-sub">— Bienes Raíces —</div>
+        <p>Especialistas en compra y venta de propiedades residenciales y comerciales en Ciudad de México.</p>
+      </div>
+      <div class="footer-col"><h4>Páginas</h4><ul><li><a href="monicaterresweb.html">Inicio</a></li><li><a href="compra.html">Compra</a></li><li><a href="vende.html">Vende</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="footer-col"><h4>Zonas</h4><ul><li><a href="compra.html">Polanco</a></li><li><a href="compra.html">Lomas de Chapultepec</a></li><li><a href="compra.html">Roma &amp; Condesa</a></li><li><a href="compra.html">Coyoacán</a></li><li><a href="compra.html">Santa Fe</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+525543687983">+52 55 4368 7983</a></li><li><a href="mailto:monicaterresbr@gmail.com">monicaterresbr@gmail.com</a></li><li><a href="contacto.html">Formulario de contacto</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Mónica Terrés Bienes Raíces · Ciudad de México · Todos los derechos reservados</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1FixHdbSAR/" class="social-btn" target="_blank" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/monicaterres_br" class="social-btn" target="_blank" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://wa.me/525543687983" class="social-btn" target="_blank" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/525543687983?text=Hola%20M%C3%B3nica%2C%20quiero%20una%20valuaci%C3%B3n%20gratuita%20de%20mi%20propiedad." class="wa-btn" title="WhatsApp" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+(function(){
+  const favs=JSON.parse(localStorage.getItem('mtFavoritos')||'[]');
+  const el=document.getElementById('favCount');
+  if(el&&favs.length>0){el.textContent=favs.length;el.style.display='inline';}
+})();
+</script>
+</body>
+</html>

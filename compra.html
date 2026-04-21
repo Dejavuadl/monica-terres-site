@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compra – Mónica Terrés Bienes Raíces</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #2B292A; --dark2: #515051; --mid: #403E3F;
+    --grey: #737273; --softgrey: #B5B5B5; --greyblue: #E6E6F2;
+    --white: #FFFFFF;
+    --radius: 4px; --radius-md: 8px; --radius-lg: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: #F4F4F4; color: var(--dark); min-height: 100vh; }
+
+  /* NAV */
+  nav { background: var(--dark); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height:100px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--mid); }
+  .logo-area { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .logo-svg{height:135px;width:auto;object-fit:contain;}
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-text .brand-name { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; text-transform: uppercase; }
+  .logo-text .brand-sub { font-size: 9px; font-weight: 400; color: var(--softgrey); letter-spacing: 0.25em; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--softgrey); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-cta { background: var(--white); color: var(--dark) !important; padding: 8px 20px; border-radius: var(--radius); font-weight: 700 !important; }
+  .nav-cta:hover { background: var(--greyblue) !important; color: var(--dark) !important; }
+  .nav-fav { display: flex; align-items: center; gap: 3px; }
+  .fav-count { font-size: 10px; font-weight: 800; background: var(--white); color: var(--dark); border-radius: 100px; padding: 1px 5px; display: none; }
+
+  /* PAGE HEADER */
+  .page-header { background: var(--dark); padding: 40px 48px; border-bottom: 1px solid var(--mid); }
+  .page-header-inner { max-width: 1200px; margin: 0 auto; }
+  .page-header-label { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--softgrey); margin-bottom: 8px; }
+  .page-header h1 { font-size: 36px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; margin-bottom: 12px; }
+  .page-header p { font-size: 13px; color: var(--grey); max-width: 480px; line-height: 1.7; }
+
+  /* SEARCH BAR */
+  .search-bar { background: var(--white); border-radius: var(--radius-md); padding: 8px; display: flex; align-items: center; max-width: 820px; box-shadow: 0 4px 24px rgba(0,0,0,0.25); margin-top: 28px; }
+  .search-field { display: flex; flex-direction: column; padding: 10px 20px; flex: 1; border-right: 1px solid #E8E8E8; cursor: pointer; }
+  .search-field:last-of-type { border-right: none; }
+  .search-field label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); margin-bottom: 4px; }
+  .search-field select, .search-field input { border: none; outline: none; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 500; color: var(--grey); background: transparent; cursor: pointer; width: 100%; -webkit-appearance: none; }
+  .search-btn { background: var(--dark); color: var(--white); border: none; border-radius: var(--radius); padding: 14px 24px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: background 0.2s; display: flex; align-items: center; gap: 8px; }
+  .search-btn:hover { background: var(--mid); }
+
+  /* STATS BAR */
+  .stats-bar { background: var(--dark2); padding: 0 48px; }
+  .stats-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; }
+  .stat-item { padding: 18px 36px 18px 0; margin-right: 36px; border-right: 1px solid rgba(255,255,255,0.1); display: flex; align-items: baseline; gap: 8px; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; }
+  .stat-num a { color: var(--white); text-decoration: none; }
+  .stat-num a:hover { text-decoration: underline; }
+  .stat-label { font-size: 11px; font-weight: 500; color: var(--softgrey); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* MAIN */
+  .main { max-width: 1200px; margin: 0 auto; padding: 40px 48px; }
+  .content-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .results-count { font-size: 13px; font-weight: 500; color: var(--grey); }
+  .results-count strong { color: var(--dark); font-weight: 700; }
+  .view-controls { display: flex; align-items: center; gap: 12px; }
+  .sort-select { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; color: var(--dark); border: 1px solid #D8D8D8; border-radius: var(--radius); padding: 8px 14px; background: var(--white); cursor: pointer; outline: none; letter-spacing: 0.05em; }
+  .content-layout { display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start; }
+
+  /* FILTERS */
+  .filters { background: var(--white); border-radius: var(--radius-lg); border: 1px solid #E8E8E8; overflow: hidden; position: sticky; top: 88px; }
+  .filter-header { background: var(--dark); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .filter-header h3 { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); }
+  .filter-clear { font-size: 10px; font-weight: 500; color: var(--softgrey); cursor: pointer; text-decoration: underline; letter-spacing: 0.08em; }
+  .filter-section { padding: 20px; border-bottom: 1px solid #F0F0F0; }
+  .filter-section:last-child { border-bottom: none; }
+  .filter-section h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dark2); margin-bottom: 14px; }
+  .filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; padding: 6px 12px; border: 1px solid #E0E0E0; border-radius: 100px; background: var(--white); color: var(--dark2); cursor: pointer; transition: all 0.15s; letter-spacing: 0.05em; }
+  .chip:hover { border-color: var(--dark); color: var(--dark); }
+  .chip.active { background: var(--dark); color: var(--white); border-color: var(--dark); }
+  .price-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .price-input { width: 100%; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 500; color: var(--dark); border: 1px solid #E0E0E0; border-radius: var(--radius); padding: 8px 10px; outline: none; transition: border-color 0.2s; }
+  .price-input:focus { border-color: var(--dark); }
+  .price-input::placeholder { color: var(--softgrey); }
+  .range-slider { width: 100%; margin-top: 12px; accent-color: var(--dark); }
+
+  /* PROPERTY GRID */
+  .prop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+
+  /* PROPERTY CARD */
+  .prop-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid #E8E8E8; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+  .prop-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.10); }
+  .card-img { position: relative; height: 200px; overflow: hidden; background: #D8D8D8; }
+  .card-img-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); display: flex; align-items: center; justify-content: center; }
+  .card-img-placeholder svg { opacity: 0.3; }
+  .card-badge { position: absolute; top: 12px; left: 12px; font-size: 9px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+  .badge-venta { background: var(--dark); color: var(--white); }
+  .badge-nuevo { background: #1a1a1a; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+  .card-fav { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; font-size: 14px; transition: background 0.2s; }
+  .card-fav:hover { background: var(--white); }
+  .card-fav.active { color: #c0392b; }
+  .card-body { padding: 16px 18px 18px; }
+  .card-price { font-size: 20px; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 4px; }
+  .card-title { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; line-height: 1.3; }
+  .card-location { font-size: 12px; font-weight: 400; color: var(--grey); display: flex; align-items: center; gap: 4px; margin-bottom: 14px; }
+  .card-divider { height: 1px; background: #F0F0F0; margin-bottom: 12px; }
+  .card-specs { display: flex; gap: 0; justify-content: space-between; }
+  .spec { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .spec-val { font-size: 13px; font-weight: 700; color: var(--dark); }
+  .spec-lbl { font-size: 10px; font-weight: 500; color: var(--softgrey); text-transform: uppercase; letter-spacing: 0.08em; }
+  .spec-icon { font-size: 15px; margin-bottom: 1px; }
+  .card-tags { margin-bottom: 10px; }
+  .card-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; background: var(--greyblue); color: var(--dark2); margin-right: 4px; }
+
+  /* EMPTY STATE */
+  .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; }
+  .empty-state h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+  .empty-state p { font-size: 13px; color: var(--grey); }
+
+  /* PAGINATION */
+  .pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 48px; }
+  .page-btn { width: 36px; height: 36px; border: 1px solid #E0E0E0; border-radius: var(--radius); background: var(--white); font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: var(--dark2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .page-btn:hover:not(:disabled) { border-color: var(--dark); color: var(--dark); }
+  .page-btn.active { background: var(--dark); color: var(--white); border-color: var(--dark); }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* FOOTER */
+  footer { background: var(--dark); margin-top: 80px; padding: 56px 48px 32px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .footer-brand .brand-name { font-size: 16px; font-weight: 800; color: var(--white); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .footer-brand .brand-sub { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; }
+  .footer-brand p { font-size: 12px; font-weight: 400; color: var(--grey); line-height: 1.7; max-width: 260px; }
+  .footer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { font-size: 12px; font-weight: 400; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom p { font-size: 11px; color: var(--grey); letter-spacing: 0.05em; }
+  .social-links { display: flex; gap: 12px; }
+  .social-btn { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--grey); font-size: 13px; text-decoration: none; transition: all 0.2s; }
+  .social-btn:hover { border-color: var(--white); color: var(--white); }
+  .wa-btn { position: fixed; bottom: 28px; right: 28px; width: 54px; height: 54px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); cursor: pointer; z-index: 200; transition: transform 0.2s; text-decoration: none; }
+  .wa-btn:hover { transform: scale(1.08); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo-area" href="monicaterresweb.html">
+    <img class="logo-svg" src="logo vertical MTBR.png" alt="Mónica Terrés Bienes Raíces">
+  </a>
+  <ul class="nav-links">
+    <li><a href="monicaterresweb.html">Inicio</a></li>
+    <li><a href="compra.html" class="active">Compra</a></li>
+    <li><a href="vende.html">Vende</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="favoritos.html" class="nav-fav" id="navFavBtn">♡ <span class="fav-count" id="favCount"></span></a></li>
+    <li><a href="tel:+525543687983" class="nav-cta">Llámanos</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-header-label">Ciudad de México · Propiedades en Venta</p>
+    <h1>Compra tu propiedad ideal</h1>
+    <p>Explora nuestra selección de casas, departamentos y locales comerciales en las mejores zonas de CDMX.</p>
+    <div class="search-bar">
+      <div class="search-field">
+        <label>Tipo de inmueble</label>
+        <select id="searchTipo">
+          <option value="todos">Todos</option>
+          <option value="casa">Casa</option>
+          <option value="depto">Departamento</option>
+          <option value="comercial">Local comercial</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Colonia / Delegación</label>
+        <input type="text" id="searchZona" placeholder="Ej. Polanco, Coyoacán…">
+      </div>
+      <div class="search-field">
+        <label>Precio máx.</label>
+        <select id="searchPrecio">
+          <option value="0">Sin límite</option>
+          <option value="5000000">$5,000,000</option>
+          <option value="10000000">$10,000,000</option>
+          <option value="20000000">$20,000,000</option>
+        </select>
+      </div>
+      <button class="search-btn" id="searchBtn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="5.5" cy="5.5" r="4.5" stroke="white" stroke-width="1.5"/>
+          <path d="M9 9L13 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">17</span><span class="stat-label">Propiedades disponibles</span></div>
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">Colonias</span></div>
+    <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Servicio personalizado</span></div>
+    <div class="stat-item"><span class="stat-num"><a href="tel:+525543687983">+52 55 4368 7983</a></span><span class="stat-label">Contacto directo</span></div>
+  </div>
+</div>
+
+<main class="main">
+  <div class="content-header">
+    <p class="results-count">Mostrando <strong id="countLabel">17 propiedades</strong> en Ciudad de México</p>
+    <div class="view-controls">
+      <select class="sort-select" id="sortSelect">
+        <option value="recent">Más recientes</option>
+        <option value="price-asc">Precio: menor a mayor</option>
+        <option value="price-desc">Precio: mayor a menor</option>
+        <option value="area">Mayor superficie</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="content-layout">
+    <aside class="filters">
+      <div class="filter-header">
+        <h3>Filtros</h3>
+        <span class="filter-clear" id="clearFilters">Limpiar todo</span>
+      </div>
+      <div class="filter-section">
+        <h4>Tipo de inmueble</h4>
+        <div class="filter-chips" data-filter="type" data-multi="false">
+          <button class="chip active" data-value="todos">Todos</button>
+          <button class="chip" data-value="casa">Casa</button>
+          <button class="chip" data-value="depto">Depto.</button>
+          <button class="chip" data-value="comercial">Comercial</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Rango de precio</h4>
+        <div class="price-inputs">
+          <input class="price-input" id="minPrice" type="text" placeholder="Mín.">
+          <input class="price-input" id="maxPrice" type="text" placeholder="Máx.">
+        </div>
+        <input type="range" class="range-slider" id="rangeSlider" min="0" max="50000000" step="500000" value="50000000">
+      </div>
+      <div class="filter-section">
+        <h4>Recámaras</h4>
+        <div class="filter-chips" data-filter="beds" data-multi="false">
+          <button class="chip" data-value="1">1</button>
+          <button class="chip" data-value="2">2</button>
+          <button class="chip" data-value="3">3</button>
+          <button class="chip" data-value="4">4+</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Baños</h4>
+        <div class="filter-chips" data-filter="baths" data-multi="false">
+          <button class="chip" data-value="1">1</button>
+          <button class="chip" data-value="2">2</button>
+          <button class="chip" data-value="3">3+</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Estacionamiento</h4>
+        <div class="filter-chips" data-filter="parking" data-multi="false">
+          <button class="chip" data-value="1">1</button>
+          <button class="chip" data-value="2">2</button>
+          <button class="chip" data-value="3">3+</button>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Zonas</h4>
+        <div class="filter-chips" data-filter="zones" data-multi="true">
+          <button class="chip" data-value="portales-oriente">Portales Oriente</button>
+          <button class="chip" data-value="portales-norte">Portales Norte</button>
+          <button class="chip" data-value="portales-sur">Portales Sur</button>
+          <button class="chip" data-value="piedad-narvarte">Piedad Narvarte</button>
+          <button class="chip" data-value="narvarte-oriente">Narvarte Oriente</button>
+          <button class="chip" data-value="del-valle-sur">Del Valle Sur</button>
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      <div class="prop-grid" id="propGrid">
+
+        <!-- Emperadores 45-403 -->
+        <div class="prop-card" data-id="1" data-type="depto" data-zone="portales-oriente" data-price="3844290" data-beds="2" data-baths="2" data-parking="1" data-area="69" data-index="1">
+          <div class="card-img">
+            <img src="fotos/emperadores/fachada emperadores.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,1)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$3,844,290</div>
+            <div class="card-title">Departamento en Portales Oriente</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Oriente, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Elevador</span><span class="card-tag">Roof garden</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">69m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Antillas $4,580,700 – terraza privada -->
+        <div class="prop-card" data-id="2" data-type="depto" data-zone="portales-norte" data-price="4580700" data-beds="2" data-baths="2" data-parking="1" data-area="85" data-index="2">
+          <div class="card-img">
+            <img src="fotos/antillas/fachada antillas.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,2)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,580,700</div>
+            <div class="card-title">Departamento con terraza en Portales Norte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Norte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Terraza privada</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">85m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Antillas $4,720,860 – balcón -->
+        <div class="prop-card" data-id="3" data-type="depto" data-zone="portales-norte" data-price="4720860" data-beds="2" data-baths="2" data-parking="1" data-area="69" data-index="3">
+          <div class="card-img">
+            <img src="fotos/antillas/fachada antillas.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,3)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,720,860</div>
+            <div class="card-title">Departamento con balcón en Portales Norte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Norte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Balcón</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">69m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Antillas 136 m² $5,886,444 – roof privado -->
+        <div class="prop-card" data-id="4" data-type="depto" data-zone="portales-norte" data-price="5886444" data-beds="2" data-baths="2" data-parking="2" data-area="136" data-index="4">
+          <div class="card-img">
+            <img src="fotos/antillas/fachada antillas.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,4)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$5,886,444</div>
+            <div class="card-title">Departamento con roof privado en Portales Norte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Norte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Roof privado</span><span class="card-tag">Balcón</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">136m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Antillas 408-103 $4,286,909 -->
+        <div class="prop-card" data-id="5" data-type="depto" data-zone="portales-norte" data-price="4286909" data-beds="2" data-baths="2" data-parking="1" data-area="60" data-index="5">
+          <div class="card-img">
+            <img src="fotos/antillas/fachada antillas.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,5)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,286,909</div>
+            <div class="card-title">Departamento en Portales Norte · Antillas 408</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Norte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Elevador</span><span class="card-tag">2026</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">60m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bélgica $5,362,751 – balcón y terraza común -->
+        <div class="prop-card" data-id="6" data-type="depto" data-zone="portales-sur" data-price="5362751" data-beds="2" data-baths="2" data-parking="1" data-area="81" data-index="6">
+          <div class="card-img">
+            <img src="fotos/belgica/fachada belgica.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,6)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$5,362,751</div>
+            <div class="card-title">Departamento con balcón y roof garden en Portales Sur</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Sur, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Balcón</span><span class="card-tag">Roof garden</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">81m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bélgica EXT $4,706,313 – balcón exterior -->
+        <div class="prop-card" data-id="7" data-type="depto" data-zone="portales-sur" data-price="4706313" data-beds="2" data-baths="2" data-parking="1" data-area="77" data-index="7">
+          <div class="card-img">
+            <img src="fotos/belgica/fachada belgica.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,7)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,706,313</div>
+            <div class="card-title">Departamento exterior con balcón en Portales Sur</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Sur, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Balcón</span><span class="card-tag">Mascotas</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">77m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emperadores $3,694,460 – roof garden -->
+        <div class="prop-card" data-id="8" data-type="depto" data-zone="portales-norte" data-price="3694460" data-beds="2" data-baths="2" data-parking="1" data-area="71" data-index="8">
+          <div class="card-img">
+            <img src="fotos/emperadores/fachada emperadores.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,8)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$3,694,460</div>
+            <div class="card-title">Departamento en Portales Norte · Emperadores</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Norte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Roof garden</span><span class="card-tag">2026</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">71m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $4,851,450 – NN-GWM914 balcón -->
+        <div class="prop-card" data-id="9" data-type="depto" data-zone="piedad-narvarte" data-price="4851450" data-beds="2" data-baths="2" data-parking="1" data-area="74" data-index="9">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,9)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,851,450</div>
+            <div class="card-title">Departamento con balcón en Piedad Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Balcón</span><span class="card-tag">Roof garden</span><span class="card-tag">Elevador</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">74m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $5,631,500 – NN-GWT650 Depto 201 -->
+        <div class="prop-card" data-id="10" data-type="depto" data-zone="piedad-narvarte" data-price="5631500" data-beds="2" data-baths="2" data-parking="1" data-area="79" data-index="10">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,10)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$5,631,500</div>
+            <div class="card-title">Departamento 201 con terraza en Piedad Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Terraza</span><span class="card-tag">Roof garden</span><span class="card-tag">Elevador</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">79m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $5,858,100 – NN-GWT656 terraza privada 36.4 m² -->
+        <div class="prop-card" data-id="11" data-type="depto" data-zone="piedad-narvarte" data-price="5858100" data-beds="2" data-baths="2" data-parking="1" data-area="74" data-index="11">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,11)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$5,858,100</div>
+            <div class="card-title">Departamento con terraza privada 36 m² en Piedad Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Terraza privada</span><span class="card-tag">Roof garden</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">74m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Park $4,000,000 – NN-XQ1000155 Narvarte Oriente -->
+        <div class="prop-card" data-id="13" data-type="depto" data-zone="narvarte-oriente" data-price="4000000" data-beds="2" data-baths="2" data-parking="1" data-area="67" data-index="13">
+          <div class="card-img">
+            <img src="fotos/the-park/fachada the park.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-venta">Venta</span>
+            <button class="card-fav" onclick="toggleFav(this,13)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,000,000</div>
+            <div class="card-title">Departamento con amenidades en Narvarte Oriente</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Narvarte Oriente, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Alberca</span><span class="card-tag">Gimnasio</span><span class="card-tag">Mascotas</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">67m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $3,660,600 – NN-GWT668 1 rec roof garden común -->
+        <div class="prop-card" data-id="14" data-type="depto" data-zone="piedad-narvarte" data-price="3660600" data-beds="1" data-baths="1" data-parking="1" data-area="58" data-index="14">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,14)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$3,660,600</div>
+            <div class="card-title">Departamento 1 rec. con roof garden en Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Roof garden</span><span class="card-tag">Elevador</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">1</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">1</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">58m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $4,462,725 – NN-GWT681 1 rec roof privado -->
+        <div class="prop-card" data-id="15" data-type="depto" data-zone="piedad-narvarte" data-price="4462725" data-beds="1" data-baths="1" data-parking="1" data-area="58" data-index="15">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,15)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,462,725</div>
+            <div class="card-title">Departamento 1 rec. con roof privado en Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Roof privado</span><span class="card-tag">Elevador</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">1</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">1</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">58m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $4,712,000 – NN-GWT672 2 rec 2 baños roof común -->
+        <div class="prop-card" data-id="16" data-type="depto" data-zone="piedad-narvarte" data-price="4712000" data-beds="2" data-baths="2" data-parking="1" data-area="74" data-index="16">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,16)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,712,000</div>
+            <div class="card-title">Departamento 2 rec. con roof garden en Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Roof garden</span><span class="card-tag">Elevador</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">74m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $4,744,000 – NN-GWT677 2 rec 2 baños roof común 3 niveles -->
+        <div class="prop-card" data-id="17" data-type="depto" data-zone="piedad-narvarte" data-price="4744000" data-beds="2" data-baths="2" data-parking="1" data-area="74" data-index="17">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,17)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$4,744,000</div>
+            <div class="card-title">Departamento 2 rec. con roof garden en Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Roof garden</span><span class="card-tag">2026</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">74m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obrero Mundial $6,010,225 – NN-GWT685 terraza privada 41.4 m² -->
+        <div class="prop-card" data-id="12" data-type="depto" data-zone="piedad-narvarte" data-price="6010225" data-beds="2" data-baths="2" data-parking="1" data-area="74" data-index="12">
+          <div class="card-img">
+            <img src="fotos/obrero-mundial/fachada obrero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,12)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$6,010,225</div>
+            <div class="card-title">Departamento con terraza privada 41 m² en Piedad Narvarte</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Piedad Narvarte, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Terraza privada</span><span class="card-tag">Roof garden</span><span class="card-tag">4 niveles</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">74m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Del Valle Sur $6,950,000 – NN-GUY864 3 rec 2 baños 2 est balcón roof garden -->
+        <div class="prop-card" data-id="18" data-type="depto" data-zone="del-valle-sur" data-price="6950000" data-beds="3" data-baths="2" data-parking="2" data-area="114" data-index="18">
+          <div class="card-img">
+            <img src="fotos/del-valle/fachada del valle plus.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <span class="card-badge badge-nuevo">Nuevo</span>
+            <button class="card-fav" onclick="toggleFav(this,18)">♡</button>
+          </div>
+          <div class="card-body">
+            <div class="card-price">$6,950,000</div>
+            <div class="card-title">Departamento 3 rec. con balcón en Del Valle Sur</div>
+            <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Del Valle Sur, Benito Juárez</div>
+            <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">3 Recámaras</span><span class="card-tag">Balcón</span><span class="card-tag">Mascotas</span></div>
+            <div class="card-divider"></div>
+            <div class="card-specs">
+              <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">3</span><span class="spec-lbl">Rec.</span></div>
+              <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+              <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">2</span><span class="spec-lbl">Est.</span></div>
+              <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">114m²</span><span class="spec-lbl">Const.</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Mónica Terrés</div>
+        <div class="brand-sub">— Bienes Raíces —</div>
+        <p>Especialistas en compra y venta de propiedades residenciales y comerciales en Ciudad de México.</p>
+      </div>
+      <div class="footer-col"><h4>Páginas</h4><ul><li><a href="monicaterresweb.html">Inicio</a></li><li><a href="compra.html">Compra</a></li><li><a href="vende.html">Vende</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="footer-col"><h4>Zonas</h4><ul><li><a href="compra.html">Polanco</a></li><li><a href="compra.html">Lomas de Chapultepec</a></li><li><a href="compra.html">Roma &amp; Condesa</a></li><li><a href="compra.html">Coyoacán</a></li><li><a href="compra.html">Santa Fe</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+525543687983">+52 55 4368 7983</a></li><li><a href="mailto:monicaterresbr@gmail.com">monicaterresbr@gmail.com</a></li><li><a href="contacto.html">Formulario de contacto</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Mónica Terrés Bienes Raíces · Ciudad de México · Todos los derechos reservados</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1FixHdbSAR/" class="social-btn" target="_blank" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/monicaterres_br" class="social-btn" target="_blank" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://wa.me/525543687983" class="social-btn" target="_blank" title="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/525543687983" class="wa-btn" title="Contactar por WhatsApp" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  const CARDS_PER_PAGE = 6;
+  let currentPage = 1;
+  let activeFilters = { type: 'todos', zones: [], beds: 0, baths: 0, parking: 0, minPrice: 0, maxPrice: 100000000 };
+
+  // Load favorites from localStorage
+  let favIds = JSON.parse(localStorage.getItem('mtFavoritos') || '[]');
+
+  function saveFavs() {
+    localStorage.setItem('mtFavoritos', JSON.stringify(favIds));
+    const el = document.getElementById('favCount');
+    if (el) { el.textContent = favIds.length > 0 ? favIds.length : ''; el.style.display = favIds.length > 0 ? 'inline' : 'none'; }
+  }
+
+  function toggleFav(btn, id) {
+    const idx = favIds.indexOf(id);
+    if (idx === -1) { favIds.push(id); btn.classList.add('active'); btn.textContent = '♥'; }
+    else { favIds.splice(idx, 1); btn.classList.remove('active'); btn.textContent = '♡'; }
+    saveFavs();
+  }
+
+  function initFavButtons() {
+    document.querySelectorAll('.prop-card').forEach(card => {
+      const id = parseInt(card.dataset.id);
+      const btn = card.querySelector('.card-fav');
+      if (favIds.includes(id)) { btn.classList.add('active'); btn.textContent = '♥'; }
+    });
+  }
+
+  function getAllCards() { return Array.from(document.querySelectorAll('.prop-card')); }
+
+  function getVisibleCards() {
+    return getAllCards().filter(c => {
+      const p = parseInt(c.dataset.price);
+      if (activeFilters.type !== 'todos' && c.dataset.type !== activeFilters.type) return false;
+      if (activeFilters.zones.length > 0 && !activeFilters.zones.includes(c.dataset.zone)) return false;
+      if (p < activeFilters.minPrice) return false;
+      if (activeFilters.maxPrice > 0 && p > activeFilters.maxPrice) return false;
+      if (activeFilters.beds > 0 && parseInt(c.dataset.beds) < activeFilters.beds) return false;
+      if (activeFilters.baths > 0 && parseFloat(c.dataset.baths) < activeFilters.baths) return false;
+      if (activeFilters.parking > 0 && parseInt(c.dataset.parking) < activeFilters.parking) return false;
+      return true;
+    });
+  }
+
+  function render() {
+    const all = getAllCards();
+    const visible = getVisibleCards();
+    const total = Math.max(1, Math.ceil(visible.length / CARDS_PER_PAGE));
+    if (currentPage > total) currentPage = 1;
+    const start = (currentPage - 1) * CARDS_PER_PAGE;
+    all.forEach(c => c.style.display = 'none');
+    visible.slice(start, start + CARDS_PER_PAGE).forEach(c => c.style.display = '');
+    const grid = document.getElementById('propGrid');
+    const ex = grid.querySelector('.empty-state');
+    if (ex) ex.remove();
+    if (visible.length === 0) {
+      const d = document.createElement('div');
+      d.className = 'empty-state';
+      d.innerHTML = '<h3>Sin resultados</h3><p>Intenta con otros filtros o <a href="tel:+525543687983" style="color:var(--dark);font-weight:700">llámanos directamente</a>.</p>';
+      grid.appendChild(d);
+    }
+    document.getElementById('countLabel').textContent = `${visible.length} propiedades`;
+    renderPagination(total);
+  }
+
+  function renderPagination(total) {
+    const el = document.getElementById('pagination');
+    if (total <= 1) { el.innerHTML = ''; return; }
+    let h = `<button class="page-btn" id="prevBtn" ${currentPage===1?'disabled':''}>‹</button>`;
+    for (let i = 1; i <= total; i++) h += `<button class="page-btn ${i===currentPage?'active':''}" data-page="${i}">${i}</button>`;
+    h += `<button class="page-btn" id="nextBtn" ${currentPage===total?'disabled':''}>›</button>`;
+    el.innerHTML = h;
+    el.querySelectorAll('[data-page]').forEach(b => b.addEventListener('click', () => { currentPage = +b.dataset.page; render(); window.scrollTo({top:400,behavior:'smooth'}); }));
+    document.getElementById('prevBtn').addEventListener('click', () => { if(currentPage>1){currentPage--;render();window.scrollTo({top:400,behavior:'smooth'});} });
+    document.getElementById('nextBtn').addEventListener('click', () => { if(currentPage<total){currentPage++;render();window.scrollTo({top:400,behavior:'smooth'});} });
+  }
+
+  function sortCards(v) {
+    const grid = document.getElementById('propGrid');
+    const cards = getAllCards();
+    cards.sort((a,b) => {
+      if (v==='price-asc') return +a.dataset.price - +b.dataset.price;
+      if (v==='price-desc') return +b.dataset.price - +a.dataset.price;
+      if (v==='area') return +b.dataset.area - +a.dataset.area;
+      return +a.dataset.index - +b.dataset.index;
+    });
+    cards.forEach(c => grid.appendChild(c));
+    currentPage = 1; render();
+  }
+
+  function updateFilters() {
+    const t = document.querySelector('[data-filter="type"] .chip.active');
+    activeFilters.type = t ? t.dataset.value : 'todos';
+    activeFilters.zones = Array.from(document.querySelectorAll('[data-filter="zones"] .chip.active')).map(c=>c.dataset.value);
+    const b = document.querySelector('[data-filter="beds"] .chip.active');
+    activeFilters.beds = b ? +b.dataset.value : 0;
+    const ba = document.querySelector('[data-filter="baths"] .chip.active');
+    activeFilters.baths = ba ? +ba.dataset.value : 0;
+    const pk = document.querySelector('[data-filter="parking"] .chip.active');
+    activeFilters.parking = pk ? +pk.dataset.value : 0;
+    const mn = document.getElementById('minPrice').value.replace(/[^\d]/g,'');
+    const mx = document.getElementById('maxPrice').value.replace(/[^\d]/g,'');
+    activeFilters.minPrice = mn ? +mn : 0;
+    activeFilters.maxPrice = mx ? +mx : 100000000;
+    currentPage = 1; render();
+  }
+
+  document.querySelectorAll('.filter-chips').forEach(group => {
+    const multi = group.dataset.multi === 'true';
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (multi) { chip.classList.toggle('active'); }
+        else { group.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); }
+        updateFilters();
+      });
+    });
+  });
+
+  document.getElementById('minPrice').addEventListener('input', updateFilters);
+  document.getElementById('maxPrice').addEventListener('input', updateFilters);
+  document.getElementById('rangeSlider').addEventListener('input', e => {
+    const v = +e.target.value;
+    document.getElementById('maxPrice').value = v>=50000000 ? '' : '$'+v.toLocaleString('es-MX');
+    updateFilters();
+  });
+  document.getElementById('clearFilters').addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    document.querySelector('[data-filter="type"] .chip[data-value="todos"]').classList.add('active');
+    document.getElementById('minPrice').value='';
+    document.getElementById('maxPrice').value='';
+    document.getElementById('rangeSlider').value=50000000;
+    activeFilters={type:'todos',zones:[],beds:0,baths:0,parking:0,minPrice:0,maxPrice:100000000};
+    currentPage=1; render();
+  });
+  document.getElementById('sortSelect').addEventListener('change', e => sortCards(e.target.value));
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    const tipo = document.getElementById('searchTipo').value;
+    const precio = document.getElementById('searchPrecio').value;
+    if (tipo !== 'todos') {
+      document.querySelectorAll('[data-filter="type"] .chip').forEach(c=>c.classList.remove('active'));
+      const ch = document.querySelector(`[data-filter="type"] .chip[data-value="${tipo}"]`);
+      if (ch) ch.classList.add('active');
+    }
+    if (precio !== '0') {
+      document.getElementById('maxPrice').value = '$'+parseInt(precio).toLocaleString('es-MX');
+    }
+    updateFilters();
+    document.querySelector('.main').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Navigate to property detail page on card click (skip fav button)
+  document.querySelectorAll('.prop-card').forEach(card => {
+    card.addEventListener('click', e => {
+      if (!e.target.closest('.card-fav')) {
+        window.location = 'propiedad.html?id=' + card.dataset.id;
+      }
+    });
+  });
+
+  // Init
+  (function(){
+    const el=document.getElementById('favCount');
+    if(el&&favIds.length>0){el.textContent=favIds.length;el.style.display='inline';}
+  })();
+  initFavButtons();
+  render();
+</script>
+</body>
+</html>

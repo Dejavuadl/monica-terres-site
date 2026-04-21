@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mónica Terrés Bienes Raíces – Inicio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--dark:#2B292A;--dark2:#515051;--mid:#403E3F;--grey:#737273;--softgrey:#B5B5B5;--greyblue:#E6E6F2;--white:#FFFFFF;--radius:4px;--radius-md:8px;--radius-lg:12px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Montserrat',sans-serif;background:#F4F4F4;color:var(--dark);min-height:100vh;}
+
+  /* NAV */
+  nav{background:var(--dark);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:100px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--mid);;overflow:visible}
+  .logo-area{display:flex;align-items:center;gap:14px;text-decoration:none;}
+  .logo-svg{height:135px;width:auto;object-fit:contain;}
+  .logo-text{display:flex;flex-direction:column;line-height:1.1;}
+  .logo-text .brand-name{font-size:15px;font-weight:700;color:var(--white);letter-spacing:0.08em;text-transform:uppercase;}
+  .logo-text .brand-sub{font-size:9px;font-weight:400;color:var(--softgrey);letter-spacing:0.25em;text-transform:uppercase;}
+  .nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+  .nav-links a{color:var(--softgrey);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--white);}
+  .nav-cta{background:var(--white);color:var(--dark)!important;padding:8px 20px;border-radius:var(--radius);font-weight:700!important;}
+  .nav-cta:hover{background:var(--greyblue)!important;}
+  .nav-fav{display:flex;align-items:center;gap:3px;}
+  .fav-count{font-size:10px;font-weight:800;background:var(--white);color:var(--dark);border-radius:100px;padding:1px 5px;display:none;}
+
+  /* HERO */
+  .hero{background:var(--dark);padding:96px 48px 88px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:600px;height:600px;border-radius:50%;border:1px solid rgba(255,255,255,0.04);}
+  .hero::after{content:'';position:absolute;bottom:-100px;right:120px;width:400px;height:400px;border-radius:50%;border:1px solid rgba(255,255,255,0.03);}
+  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .hero-label{font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--softgrey);margin-bottom:20px;}
+  .hero h1{font-size:58px;font-weight:800;color:var(--white);line-height:1.0;letter-spacing:-0.02em;margin-bottom:24px;}
+  .hero h1 span{color:var(--softgrey);font-weight:300;}
+  .hero-desc{font-size:15px;font-weight:400;color:var(--grey);line-height:1.8;margin-bottom:40px;max-width:500px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-hero-primary{background:var(--white);color:var(--dark);padding:18px 32px;border-radius:var(--radius);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;}
+  .btn-hero-primary:hover{background:var(--greyblue);}
+  .btn-hero-secondary{background:transparent;color:var(--white);padding:18px 32px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.3);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+  .btn-hero-secondary:hover{border-color:var(--white);background:rgba(255,255,255,0.05);}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .hero-stat-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:28px 24px;}
+  .hero-stat-num{font-size:36px;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:4px;}
+  .hero-stat-lbl{font-size:11px;font-weight:500;color:var(--softgrey);text-transform:uppercase;letter-spacing:0.12em;line-height:1.4;}
+
+  /* FEATURED SECTION */
+  .section{max-width:1200px;margin:0 auto;padding:72px 48px;}
+  .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
+  .section-title{font-size:32px;font-weight:800;color:var(--dark);letter-spacing:-0.02em;}
+  .section-link{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--dark);text-decoration:none;border-bottom:1px solid var(--dark);padding-bottom:2px;transition:opacity 0.2s;white-space:nowrap;}
+  .section-link:hover{opacity:0.6;}
+
+  /* FEATURED CARDS */
+  .featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .prop-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;border:1px solid #E8E8E8;transition:transform 0.2s,box-shadow 0.2s;}
+  .prop-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.10);}
+  .card-img{position:relative;height:200px;overflow:hidden;}
+  .card-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 100%);display:flex;align-items:center;justify-content:center;}
+  .card-img-placeholder svg{opacity:0.3;}
+  .card-badge{position:absolute;top:12px;left:12px;font-size:9px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}
+  .badge-venta{background:var(--dark);color:var(--white);}
+  .badge-nuevo{background:#1a1a1a;color:#fff;border:1px solid rgba(255,255,255,0.2);}
+  .card-fav{position:absolute;top:12px;right:12px;width:32px;height:32px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:14px;transition:background 0.2s;}
+  .card-fav:hover{background:var(--white);}
+  .card-fav.active{color:#c0392b;}
+  .card-body{padding:16px 18px 18px;}
+  .card-price{font-size:20px;font-weight:800;color:var(--dark);letter-spacing:-0.02em;margin-bottom:4px;}
+  .card-title{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:4px;line-height:1.3;}
+  .card-location{font-size:12px;font-weight:400;color:var(--grey);display:flex;align-items:center;gap:4px;margin-bottom:14px;}
+  .card-divider{height:1px;background:#F0F0F0;margin-bottom:12px;}
+  .card-specs{display:flex;justify-content:space-between;}
+  .spec{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .spec-val{font-size:13px;font-weight:700;color:var(--dark);}
+  .spec-lbl{font-size:10px;font-weight:500;color:var(--softgrey);text-transform:uppercase;letter-spacing:0.08em;}
+  .spec-icon{font-size:15px;margin-bottom:1px;}
+  .card-tags{margin-bottom:10px;}
+  .card-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px;border-radius:100px;background:var(--greyblue);color:var(--dark2);margin-right:4px;}
+
+  /* WHY US */
+  .why-section{background:var(--white);border-top:1px solid #E8E8E8;border-bottom:1px solid #E8E8E8;}
+  .why-inner{max-width:1200px;margin:0 auto;padding:72px 48px;}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:48px;}
+  .why-item{text-align:center;padding:8px;}
+  .why-icon{font-size:40px;margin-bottom:16px;display:block;}
+  .why-title{font-size:14px;font-weight:800;color:var(--dark);letter-spacing:0.02em;margin-bottom:10px;}
+  .why-text{font-size:12px;color:var(--grey);line-height:1.7;}
+
+  /* SELL CTA */
+  .sell-cta{background:var(--dark);padding:80px 48px;}
+  .sell-cta-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .sell-cta-label{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--softgrey);margin-bottom:14px;}
+  .sell-cta h2{font-size:40px;font-weight:800;color:var(--white);letter-spacing:-0.02em;line-height:1.1;margin-bottom:20px;}
+  .sell-cta p{font-size:14px;color:var(--grey);line-height:1.8;margin-bottom:32px;}
+  .sell-cta-right{display:flex;flex-direction:column;gap:16px;}
+  .sell-point{display:flex;align-items:flex-start;gap:14px;}
+  .sell-point-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+  .sell-point-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;}
+  .sell-point-text{font-size:12px;color:var(--grey);line-height:1.6;}
+
+  /* ZONES BAND */
+  .zones-band{padding:48px 0;overflow:hidden;background:#EFEFEF;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;}
+  .zones-label{text-align:center;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--grey);margin-bottom:20px;}
+  .zones-scroll{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 48px;}
+  .zone-chip{background:var(--white);border:1px solid #E0E0E0;border-radius:100px;padding:10px 20px;font-size:12px;font-weight:600;color:var(--dark);letter-spacing:0.06em;text-decoration:none;transition:all 0.15s;}
+  .zone-chip:hover{background:var(--dark);color:var(--white);border-color:var(--dark);}
+
+  /* CONTACT STRIP */
+  .contact-strip{background:var(--dark2);padding:40px 48px;}
+  .contact-strip-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+  .contact-strip h3{font-size:20px;font-weight:800;color:var(--white);letter-spacing:-0.01em;}
+  .contact-strip p{font-size:13px;color:var(--softgrey);margin-top:4px;}
+  .contact-strip-btns{display:flex;gap:12px;flex-shrink:0;}
+  .strip-btn-white{background:var(--white);color:var(--dark);padding:14px 28px;border-radius:var(--radius);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;white-space:nowrap;}
+  .strip-btn-white:hover{background:var(--greyblue);}
+  .strip-btn-ghost{background:transparent;color:var(--white);padding:14px 28px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.3);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
+  .strip-btn-ghost:hover{border-color:var(--white);}
+
+  /* FOOTER */
+  footer{background:var(--dark);padding:56px 48px 32px;}
+  .footer-inner{max-width:1200px;margin:0 auto;}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  .footer-brand .brand-name{font-size:16px;font-weight:800;color:var(--white);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+  .footer-brand .brand-sub{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;}
+  .footer-brand p{font-size:12px;font-weight:400;color:var(--grey);line-height:1.7;max-width:260px;}
+  .footer-col h4{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--white);margin-bottom:16px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .footer-col a{font-size:12px;font-weight:400;color:var(--grey);text-decoration:none;transition:color 0.2s;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;}
+  .footer-bottom p{font-size:11px;color:var(--grey);letter-spacing:0.05em;}
+  .social-links{display:flex;gap:12px;}
+  .social-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:13px;text-decoration:none;transition:all 0.2s;}
+  .social-btn:hover{border-color:var(--white);color:var(--white);}
+  .wa-btn{position:fixed;bottom:28px;right:28px;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:200;transition:transform 0.2s;text-decoration:none;}
+  .wa-btn:hover{transform:scale(1.08);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo-area" href="monicaterresweb.html">
+    <img class="logo-svg" src="logo vertical MTBR.png" alt="Mónica Terrés Bienes Raíces">
+  </a>
+  <ul class="nav-links">
+    <li><a href="monicaterresweb.html" class="active">Inicio</a></li>
+    <li><a href="compra.html">Compra</a></li>
+    <li><a href="vende.html">Vende</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="favoritos.html" class="nav-fav" id="navFavBtn">♡ <span class="fav-count" id="favCount"></span></a></li>
+    <li><a href="tel:+525543687983" class="nav-cta">Llámanos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-label">Ciudad de México · Bienes Raíces</p>
+      <h1>Tu propiedad<br>ideal te <span>espera</span></h1>
+      <p class="hero-desc">Más de una década ayudando a familias y empresas a comprar y vender propiedades en las mejores colonias de la Ciudad de México. Confianza, transparencia y resultados.</p>
+      <div class="hero-ctas">
+        <a href="compra.html" class="btn-hero-primary">Ver propiedades</a>
+        <a href="vende.html" class="btn-hero-secondary">Vender mi propiedad</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">12+</div>
+        <div class="hero-stat-lbl">Propiedades disponibles</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-lbl">Colonias de especialidad</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">+10</div>
+        <div class="hero-stat-lbl">Años de experiencia</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-lbl">Servicio personalizado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROPERTIES -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Selección destacada</p>
+      <h2 class="section-title">Propiedades destacadas</h2>
+    </div>
+    <a href="compra.html" class="section-link">Ver todas las propiedades →</a>
+  </div>
+  <div class="featured-grid">
+
+    <!-- Emperadores 45-403 $3,844,290 -->
+    <div class="prop-card" onclick="window.location='propiedad.html?id=1'" style="cursor:pointer;">
+      <div class="card-img">
+        <img src="fotos/emperadores/fachada emperadores.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="card-badge badge-nuevo">Nuevo</span>
+        <button class="card-fav" onclick="event.stopPropagation();toggleFav(this,1)">♡</button>
+      </div>
+      <div class="card-body">
+        <div class="card-price">$3,844,290</div>
+        <div class="card-title">Departamento en Portales Oriente</div>
+        <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Oriente, Benito Juárez</div>
+        <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Elevador</span><span class="card-tag">Roof garden</span></div>
+        <div class="card-divider"></div>
+        <div class="card-specs">
+          <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+          <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+          <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+          <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">69m²</span><span class="spec-lbl">Const.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bélgica $5,362,751 -->
+    <div class="prop-card" onclick="window.location='propiedad.html?id=6'" style="cursor:pointer;">
+      <div class="card-img">
+        <img src="fotos/belgica/fachada belgica.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="card-badge badge-nuevo">Nuevo</span>
+        <button class="card-fav" onclick="event.stopPropagation();toggleFav(this,6)">♡</button>
+      </div>
+      <div class="card-body">
+        <div class="card-price">$5,362,751</div>
+        <div class="card-title">Departamento con balcón y roof garden en Portales Sur</div>
+        <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Portales Sur, Benito Juárez</div>
+        <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Balcón</span><span class="card-tag">Roof garden</span></div>
+        <div class="card-divider"></div>
+        <div class="card-specs">
+          <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+          <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+          <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+          <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">81m²</span><span class="spec-lbl">Const.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Park $4,000,000 -->
+    <div class="prop-card" onclick="window.location='propiedad.html?id=13'" style="cursor:pointer;">
+      <div class="card-img">
+        <img src="fotos/the-park/fachada the park.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="card-badge badge-nuevo">Nuevo</span>
+        <button class="card-fav" onclick="event.stopPropagation();toggleFav(this,13)">♡</button>
+      </div>
+      <div class="card-body">
+        <div class="card-price">$4,000,000</div>
+        <div class="card-title">Departamento con amenidades en Narvarte Oriente</div>
+        <div class="card-location"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 12 5 12C5 12 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.5C4.17 6.5 3.5 5.83 3.5 5C3.5 4.17 4.17 3.5 5 3.5C5.83 3.5 6.5 4.17 6.5 5C6.5 5.83 5.83 6.5 5 6.5Z" fill="#737273"/></svg> Narvarte Oriente, Benito Juárez</div>
+        <div class="card-tags"><span class="card-tag">Depto.</span><span class="card-tag">Alberca</span><span class="card-tag">Gimnasio</span></div>
+        <div class="card-divider"></div>
+        <div class="card-specs">
+          <div class="spec"><span class="spec-icon">🛏</span><span class="spec-val">2</span><span class="spec-lbl">Rec.</span></div>
+          <div class="spec"><span class="spec-icon">🚿</span><span class="spec-val">2</span><span class="spec-lbl">Baños</span></div>
+          <div class="spec"><span class="spec-icon">🚗</span><span class="spec-val">1</span><span class="spec-lbl">Est.</span></div>
+          <div class="spec"><span class="spec-icon">📐</span><span class="spec-val">67m²</span><span class="spec-lbl">Const.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="why-section">
+  <div class="why-inner">
+    <div>
+      <p class="section-label">Por qué elegirnos</p>
+      <h2 class="section-title">Tu tranquilidad, nuestra prioridad</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="why-icon">🤝</span>
+        <div class="why-title">Asesoría personalizada</div>
+        <div class="why-text">Cada cliente recibe atención única. Nos involucramos en cada caso desde la búsqueda hasta la firma ante notario.</div>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">📊</span>
+        <div class="why-title">Conocimiento del mercado</div>
+        <div class="why-text">Más de 10 años operando en CDMX. Conocemos precios, tendencias y oportunidades en cada colonia.</div>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">⚖️</span>
+        <div class="why-title">Seguridad jurídica</div>
+        <div class="why-text">Revisamos toda la documentación y acompañamos el proceso legal para que tu operación sea 100% segura.</div>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">💬</span>
+        <div class="why-title">Comunicación constante</div>
+        <div class="why-text">Siempre disponibles por WhatsApp, teléfono o email. Nunca te dejamos sin respuesta.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SELL CTA -->
+<div class="sell-cta">
+  <div class="sell-cta-inner">
+    <div>
+      <p class="sell-cta-label">¿Quieres vender?</p>
+      <h2>Obtén una valuación<br>gratuita hoy</h2>
+      <p>Descubre cuánto vale tu propiedad con un análisis de mercado personalizado. Sin costo, sin compromiso. Solo escríbenos y agendamos.</p>
+      <a href="https://wa.me/525543687983?text=Hola%20M%C3%B3nica%2C%20quiero%20una%20valuaci%C3%B3n%20gratuita%20de%20mi%20propiedad." class="btn-hero-primary" target="_blank">Quiero mi valuación gratuita</a>
+    </div>
+    <div class="sell-cta-right">
+      <div class="sell-point">
+        <span class="sell-point-icon">✓</span>
+        <div>
+          <div class="sell-point-title">Valuación sin costo</div>
+          <div class="sell-point-text">Analizamos tu propiedad y el mercado actual sin cobrar nada.</div>
+        </div>
+      </div>
+      <div class="sell-point">
+        <span class="sell-point-icon">✓</span>
+        <div>
+          <div class="sell-point-title">Estrategia de precio</div>
+          <div class="sell-point-text">Te damos el precio óptimo para vender rápido y bien.</div>
+        </div>
+      </div>
+      <div class="sell-point">
+        <span class="sell-point-icon">✓</span>
+        <div>
+          <div class="sell-point-title">Cierre acompañado</div>
+          <div class="sell-point-text">Desde la primera visita hasta la escritura, estamos contigo.</div>
+        </div>
+      </div>
+      <div class="sell-point">
+        <span class="sell-point-icon">✓</span>
+        <div>
+          <div class="sell-point-title">Sin sorpresas</div>
+          <div class="sell-point-text">Transparencia total en comisiones, tiempos y proceso.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ZONES BAND -->
+<div class="zones-band">
+  <p class="zones-label">Zonas de especialidad</p>
+  <div class="zones-scroll">
+    <a href="compra.html" class="zone-chip">Del Valle</a>
+    <a href="compra.html" class="zone-chip">Narvarte</a>
+    <a href="compra.html" class="zone-chip">Nápoles</a>
+    <a href="compra.html" class="zone-chip">Álamos</a>
+    <a href="compra.html" class="zone-chip">Portales</a>
+    <a href="compra.html" class="zone-chip">Colonia del Carmen</a>
+    <a href="compra.html" class="zone-chip">Moderna</a>
+    <a href="compra.html" class="zone-chip">Miravalle</a>
+    <a href="compra.html" class="zone-chip">Xoco</a>
+    <a href="compra.html" class="zone-chip">Acacias</a>
+    <a href="compra.html" class="zone-chip">Zacahuitzco</a>
+  </div>
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-strip-inner">
+    <div>
+      <h3>¿Tienes preguntas?</h3>
+      <p>Estamos disponibles de lunes a sábado · +52 55 4368 7983</p>
+    </div>
+    <div class="contact-strip-btns">
+      <a href="contacto.html" class="strip-btn-white">Ir a contacto</a>
+      <a href="https://wa.me/525543687983?text=Hola%20M%C3%B3nica%2C%20tengo%20una%20pregunta%20sobre%20una%20propiedad." class="strip-btn-ghost" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Mónica Terrés</div>
+        <div class="brand-sub">— Bienes Raíces —</div>
+        <p>Especialistas en compra y venta de propiedades residenciales y comerciales en Ciudad de México.</p>
+      </div>
+      <div class="footer-col"><h4>Páginas</h4><ul><li><a href="monicaterresweb.html">Inicio</a></li><li><a href="compra.html">Compra</a></li><li><a href="vende.html">Vende</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="footer-col"><h4>Zonas</h4><ul><li><a href="compra.html">Del Valle</a></li><li><a href="compra.html">Narvarte</a></li><li><a href="compra.html">Portales</a></li><li><a href="compra.html">Nápoles</a></li><li><a href="compra.html">Álamos</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+525543687983">+52 55 4368 7983</a></li><li><a href="mailto:monicaterresbr@gmail.com">monicaterresbr@gmail.com</a></li><li><a href="contacto.html">Formulario de contacto</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Mónica Terrés Bienes Raíces · Ciudad de México · Todos los derechos reservados</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1FixHdbSAR/" class="social-btn" target="_blank" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/monicaterres_br" class="social-btn" target="_blank" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://wa.me/525543687983" class="social-btn" target="_blank" title="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/525543687983" class="wa-btn" title="Contactar por WhatsApp" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  let favIds = JSON.parse(localStorage.getItem('mtFavoritos') || '[]');
+
+  function saveFavs() {
+    localStorage.setItem('mtFavoritos', JSON.stringify(favIds));
+    const el = document.getElementById('favCount');
+    if (el) { el.textContent = favIds.length > 0 ? favIds.length : ''; el.style.display = favIds.length > 0 ? 'inline' : 'none'; }
+  }
+
+  function toggleFav(btn, id) {
+    const idx = favIds.indexOf(id);
+    if (idx === -1) { favIds.push(id); btn.classList.add('active'); btn.textContent = '♥'; }
+    else { favIds.splice(idx, 1); btn.classList.remove('active'); btn.textContent = '♡'; }
+    saveFavs();
+  }
+
+  (function(){
+    const el = document.getElementById('favCount');
+    if (el && favIds.length > 0) { el.textContent = favIds.length; el.style.display = 'inline'; }
+    document.querySelectorAll('.card-fav').forEach(btn => {
+      const onclick = btn.getAttribute('onclick');
+      const m = onclick && onclick.match(/toggleFav\(this,(\d+)\)/);
+      if (m && favIds.includes(parseInt(m[1]))) { btn.classList.add('active'); btn.textContent = '♥'; }
+    });
+  })();
+</script>
+</body>
+</html>
