@@ -1,0 +1,230 @@
+/* ====================================================
+   MÓNICA TERRÉS — RESPONSIVE / MOBILE STYLES
+   Breakpoints: 900px (tablet), 600px (phone)
+   ==================================================== */
+
+/* ── NAV HAMBURGER ── */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 201;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  /* NAV */
+  nav {
+    padding: 0 20px !important;
+    height: 70px !important;
+    overflow: visible !important;
+  }
+  .logo-svg { height: 90px !important; }
+  .nav-toggle { display: flex !important; }
+  .nav-links {
+    display: none !important;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: #2B292A;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 8px 0 16px;
+    border-bottom: 1px solid #515051;
+    z-index: 200;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  }
+  .nav-links.open { display: flex !important; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    padding: 14px 24px !important;
+    font-size: 13px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .nav-cta {
+    margin: 8px 24px 0 !important;
+    padding: 12px 20px !important;
+    text-align: center;
+    border-radius: 4px !important;
+  }
+
+  /* HERO — HOME */
+  .hero { padding: 48px 20px 40px !important; }
+  .hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+  .hero h1 { font-size: 34px !important; }
+  .hero-desc { font-size: 14px !important; }
+  .hero-ctas { flex-direction: column !important; }
+  .btn-hero-primary, .btn-hero-secondary,
+  .btn-primary, .btn-secondary {
+    text-align: center;
+    justify-content: center;
+  }
+  .hero-stats { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .hero-stat-card { padding: 20px 16px !important; }
+  .hero-stat-num { font-size: 28px !important; }
+
+  /* HERO — INNER PAGES */
+  .hero h1 { font-size: 30px !important; max-width: 100% !important; }
+  .page-header { padding: 32px 20px !important; }
+  .page-header h1 { font-size: 26px !important; }
+
+  /* SECTIONS */
+  .section { padding: 48px 20px !important; }
+  .section-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .section-title { font-size: 24px !important; }
+
+  /* FEATURED GRID */
+  .featured-grid { grid-template-columns: 1fr !important; }
+
+  /* WHY GRID */
+  .why-inner { padding: 48px 20px !important; }
+  .why-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+
+  /* SELL CTA */
+  .sell-cta { padding: 56px 20px !important; }
+  .sell-cta-inner { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .sell-cta h2 { font-size: 28px !important; }
+
+  /* CONTACT STRIP */
+  .contact-strip { padding: 32px 20px !important; }
+  .contact-strip-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+  }
+  .contact-strip-btns { flex-direction: column !important; width: 100% !important; }
+  .strip-btn-white, .strip-btn-ghost {
+    text-align: center !important;
+    padding: 14px 20px !important;
+  }
+
+  /* ZONES BAND */
+  .zones-scroll { padding: 0 20px !important; }
+
+  /* FOOTER */
+  footer { padding: 40px 20px 24px !important; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 16px !important;
+    text-align: center;
+  }
+
+  /* COMPRA / VENTA — SEARCH & FILTERS */
+  .search-bar {
+    flex-direction: column !important;
+    padding: 12px !important;
+  }
+  .search-field {
+    border-right: none !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+    padding: 10px 12px !important;
+  }
+  .search-field:last-of-type { border-bottom: none !important; }
+  .search-btn { width: 100% !important; justify-content: center !important; margin-top: 4px !important; }
+  .stats-bar, .stats-strip, .search-wrap { padding: 0 20px !important; }
+  .stats-inner {
+    flex-wrap: wrap !important;
+    gap: 0 !important;
+    padding: 8px 0 !important;
+  }
+  .stat-item {
+    border-right: none !important;
+    padding: 10px 16px 10px 0 !important;
+    margin-right: 0 !important;
+    flex: 0 0 50% !important;
+  }
+
+  /* COMPRA — LAYOUT */
+  .main { padding: 24px 20px !important; }
+  .content-layout { grid-template-columns: 1fr !important; gap: 0 !important; }
+  .filters {
+    position: static !important;
+    margin-bottom: 24px !important;
+  }
+  .content-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .view-controls { width: 100% !important; justify-content: space-between !important; }
+
+  /* PROP CARD GRID */
+  .prop-grid { grid-template-columns: 1fr !important; }
+
+  /* NOSOTROS */
+  .content { padding: 40px 20px !important; }
+  .about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .mission-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+
+  /* CONTACTO */
+  .intent-section { padding: 24px 20px !important; }
+  .intent-buttons { flex-direction: column !important; }
+  .intent-btn { width: 100% !important; }
+  .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* PROPIEDAD */
+  .gallery-inner { padding: 0 12px !important; }
+  .prop-layout {
+    grid-template-columns: 1fr !important;
+    padding: 20px 20px 60px !important;
+    gap: 32px !important;
+  }
+  .prop-price { font-size: 30px !important; }
+  .prop-title { font-size: 18px !important; }
+  .breadcrumb-wrap { padding: 16px 20px 0 !important; }
+  .prop-sidebar { position: static !important; }
+
+  /* CHATBOT — avoid overlap with WhatsApp btn */
+  #mtbr-chat-btn { bottom: 90px !important; right: 20px !important; }
+  #mtbr-chat-box { bottom: 160px !important; right: 20px !important; width: calc(100vw - 40px) !important; }
+  .wa-btn { bottom: 28px !important; right: 20px !important; }
+}
+
+@media (max-width: 600px) {
+  /* Extra small phones */
+  .hero h1 { font-size: 28px !important; }
+  .page-header h1 { font-size: 22px !important; }
+  .sell-cta h2 { font-size: 24px !important; }
+  .section-title { font-size: 22px !important; }
+  .why-grid { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .hero-stats { grid-template-columns: 1fr 1fr !important; }
+  .prop-price { font-size: 26px !important; }
+
+  /* Gallery on propiedad — show single column */
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    height: auto !important;
+  }
+  .g-hero { grid-row: auto !important; }
+  .g-slot { height: 220px !important; }
+}
