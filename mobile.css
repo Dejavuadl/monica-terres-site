@@ -218,6 +218,9 @@
   .cc-btn-wa, .cc-btn-phone { flex: 1 1 calc(50% - 5px) !important; }
   .cc-btn-email, .cc-btn-pdf { flex: 1 1 100% !important; }
 
+  /* LIGHTBOX — above nav on mobile */
+  .lightbox { z-index: 1100 !important; }
+
   /* ── CHATBOT position ── */
   #mtbr-chat-btn { bottom: 24px !important; right: 20px !important; }
   #mtbr-chat-box { bottom: 94px !important; right: 20px !important; width: calc(100vw - 40px) !important; }
