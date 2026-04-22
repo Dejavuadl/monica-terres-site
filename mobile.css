@@ -152,6 +152,10 @@
   .content-header { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
   .view-controls { width: 100% !important; justify-content: space-between !important; }
 
+  /* VENDE — PHILOSOPHY */
+  .philosophy-section { grid-template-columns: 1fr !important; gap: 28px !important; padding: 36px 20px !important; }
+  .philosophy-quote p { font-size: 17px !important; }
+
   /* NOSOTROS */
   .content { padding: 36px 20px !important; }
   .about-grid { grid-template-columns: 1fr !important; gap: 28px !important; margin-bottom: 40px !important; }
