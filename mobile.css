@@ -157,6 +157,11 @@
   .about-grid { grid-template-columns: 1fr !important; gap: 28px !important; margin-bottom: 40px !important; }
   .mission-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
   .focus-grid { grid-template-columns: 1fr 1fr !important; }
+  .values-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+  .value-item { padding: 16px !important; }
+  .value-num { font-size: 28px !important; }
+  .value-title { font-size: 12px !important; }
+  .value-text { font-size: 11px !important; }
 
   /* CONTACTO */
   .intent-section { padding: 20px !important; }
