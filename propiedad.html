@@ -200,6 +200,10 @@
   .lb-close { position: absolute; top: 24px; right: 28px; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 28px; cursor: pointer; line-height: 1; transition: color 0.2s; }
   .lb-close:hover { color: #fff; }
   .lb-counter { color: rgba(255,255,255,0.4); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: #fff; font-size: 28px; width: 48px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; line-height: 1; padding: 0; }
+  .lb-nav:hover { background: rgba(255,255,255,0.25); }
+  .lb-nav-prev { left: 20px; }
+  .lb-nav-next { right: 20px; }
 
   /* ── WA FIXED ── */
   /* ── FOOTER ── */
@@ -257,7 +261,9 @@
 <!-- lightbox -->
 <div class="lightbox" id="lightbox">
   <button class="lb-close" onclick="closeLB()">✕</button>
+  <button class="lb-nav lb-nav-prev" onclick="lbPrev()" aria-label="Anterior">‹</button>
   <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-nav lb-nav-next" onclick="lbNext()" aria-label="Siguiente">›</button>
   <div class="lb-controls">
     <button class="lb-btn" onclick="lbPrev()">‹ Anterior</button>
     <span class="lb-counter" id="lbCounter"></span>
@@ -618,6 +624,20 @@ function closeLB() { document.getElementById('lightbox').classList.remove('open'
 function lbPrev() { lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length; openLB(lbPhotos, lbIdx); }
 function lbNext() { lbIdx = (lbIdx + 1) % lbPhotos.length; openLB(lbPhotos, lbIdx); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); if (e.key === 'ArrowLeft') lbPrev(); if (e.key === 'ArrowRight') lbNext(); });
+
+// Touch swipe for lightbox
+(function(){
+  var lb = document.getElementById('lightbox');
+  var startX = 0, startY = 0;
+  lb.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; startY = e.touches[0].clientY; }, {passive:true});
+  lb.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) lbNext(); else lbPrev();
+    }
+  }, {passive:true});
+})();
 
 /* ─── Render ─── */
 function logoSVG(op) {
